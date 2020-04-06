@@ -1,0 +1,80 @@
+// $fb: #4a69bd;
+// $email: #DD5144;
+// $lightgreen: #009B72;
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+//     box-shadow: 0 0 0 1000px #fff inset !important;
+// }
+// .signup-form{
+//     box-shadow: 0px 2px 16px 0px rgba(0,0,0,0.44);
+//     max-width: 350px;
+//     padding: 40px 0;
+//     margin: 30px auto;
+//     h4{
+//         text-align: center;
+//         margin-bottom: 30px;
+//     }
+//     form{
+//         text-align: center;
+//         box-shadow: none;
+//         padding: 0;
+//         margin: 0;
+//          .name-section , .email-section, .password-section, .passwordtwo-section{
+//             width: 200px;
+//             margin: auto;
+//             text-align: left;
+//             margin-bottom: 10px;
+//             p{
+//                 margin: 0;
+//                 padding: 0;
+//                 color: #DD5144;
+//             }
+//          }
+         
+//          input[type=text],input[type=email],input[type=password]{
+//              border: none;
+//              border-bottom: 1px solid $lightgreen;
+//              margin-bottom: 0px;
+//              width: 200px;
+//              padding-bottom: 5px;
+//              border-radius: 0;
+//          }
+//          input[type=text]:focus,input[type=email]:focus,input[type=password]:focus{
+//             outline: none;
+//             border-bottom: 2px solid $lightgreen;
+//          }
+//          .fb{
+//             background: $fb;
+//             border: none;
+//             color: #fff;
+//             padding: 5px 0px;
+//             width: 200px;
+//             margin-bottom: 10px;
+//             }
+//             .email{
+//                 background: $email;
+//                 border: none;
+//                 color: #fff;
+//                 padding: 5px 0px;
+//                 width: 200px;
+//                 margin-bottom: 10px;
+//             }
+//             .signup{
+//                 background: #009B72;
+//                 border: none;
+//                 color: #fff;
+//                 padding: 5px 0px;
+//                 width: 200px;
+//                 margin-bottom: 10px;
+//                 margin-top: 20px;
+//                 font-size: 18px;
+//             }
+//             .already-member{
+//                 margin-bottom: 10px;
+//                 display: inline-block;
+//             }
+//          }
+//      }
+

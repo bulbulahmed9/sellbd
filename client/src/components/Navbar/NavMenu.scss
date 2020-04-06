@@ -1,0 +1,85 @@
+$navlink: #000000;
+$navbg: rgba(255, 255, 255, 0.3);
+$lightgreen: #16a085;
+$white: #ffffff;
+$button: #1c3743;
+
+// .active::before{
+//   content: "";
+//   position: absolute;
+//   bottom: 0;
+//   left: 5px;
+//   width: 5px;
+//   height: 2px;
+//   background: $button;
+// }
+.navbar-brand {
+  padding-top: 0;
+}
+.my-navbar {
+  width: 100%;
+  z-index: 9999;
+  padding: 10px 0;
+  // position: sticky;
+  // top: 0;
+  // left: 0;
+  .my-nav {
+    // height: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 125px;
+    .active::before{
+      position: absolute;
+       content: "";
+       bottom: -5px;
+       left: 50%;
+       transform: translateX(-50%);
+       height: 2px;
+       width: 80%;
+       background: var(--footer-bg); 
+    }
+  }
+  .link {
+    position: relative;
+    color: $navlink;
+    margin-right: 30px;
+    text-transform: capitalize;
+    font-size: 13px;
+    text-decoration: none;
+    vertical-align: middle;
+    svg {
+      transform: translateY(-2px);
+    }
+  }
+
+  .post-ad-link {
+    background: $lightgreen;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+  }
+  .nav-right {
+    .sell {
+      background: $button;
+      color: $white;
+      padding: 8px 17px;
+      border-radius: 18px;
+      margin-right: 12px;
+      text-decoration: none;
+    }
+    .login {
+      text-decoration: none;
+      color: $button;
+    }
+  }
+}
+.transparent {
+  background: var(--white-overlay);
+  z-index: 999;
+}
+.not-transparent {
+  background: var(--white);
+  -webkit-box-shadow: -4px 17px 41px -30px rgba(135, 141, 145, 1);
+  -moz-box-shadow: -4px 17px 41px -30px rgba(135, 141, 145, 1);
+  box-shadow: -4px 17px 41px -30px rgba(135, 141, 145, 1);
+}

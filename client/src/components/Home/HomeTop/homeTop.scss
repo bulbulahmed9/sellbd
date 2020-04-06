@@ -1,0 +1,96 @@
+$white: #e7edee;
+$brand-color: #34495e;
+$black: #000000;
+
+.header-top {
+  background: url("../img/header-bg.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $white;
+  height: 100vh;
+  position: relative;
+  // margin-top: -71px;
+  z-index: 999;
+
+  .overlay {
+    background: rgba(28, 55, 67, 0.7);
+    position: absolute;
+    top: 71px;
+    left: 0;
+    height: calc(100% - 71px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    h1 {
+      margin-bottom: 20px;
+    }
+    p {
+      margin-bottom: 3rem;
+    }
+    .filter-area {
+      display: flex;
+      justify-content: center;
+      .division-input {
+        width: 250px;
+        position: relative;
+        margin-right: 5px;
+        // z-index: 999;
+        .division {
+          border-radius: 30px;
+          height: 50px;
+          width: 100%;
+          border: none;
+          outline: none;
+          text-align: left;
+          padding: 0 50px;
+          &::placeholder {
+            color: $black;
+          }
+        }
+        .division-icon {
+          position: absolute;
+          top: 10px;
+          left: 20px;
+          z-index: 999;
+          color: $black;
+          svg {
+            font-size: 18px;
+          }
+        }
+      }
+      .city-input {
+        @extend .division-input;
+        .city {
+          @extend .division;
+          text-align: left;
+        }
+        .city-icon {
+          position: absolute;
+          top: 10px;
+          left: 20px;
+          z-index: 999;
+          color: $black;
+          svg {
+            @extend svg;
+          }
+        }
+      }
+      .search{
+        svg{
+          font-size: 25px;
+        }
+      }
+      button {
+        padding: 0 30px;
+        border-radius: 25px;
+        border: none;
+        outline: none;
+        svg {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+}

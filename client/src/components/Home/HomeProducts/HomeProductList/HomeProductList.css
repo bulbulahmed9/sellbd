@@ -1,0 +1,23 @@
+.home-product-list {
+    padding: 80px 0;
+}
+.home-product-list .button{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.home-product-list .button a,a:hover{
+    text-decoration: none;
+}
+.home-product-list .button button{
+    padding-right: 20px;
+    color: #000;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.home-product-list .button a:last-child{
+    padding-right: 0px;
+}
+.home-product-list .discover-button{
+    text-align: center;
+}
