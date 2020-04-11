@@ -7,7 +7,7 @@ input::-webkit-inner-spin-button {
 }
 /* input [type=number] arrows hide */
 /* Firefox */
-input[type="number"] {
+input[type="password"] {
   -moz-appearance: textfield;
 }
 
@@ -62,8 +62,8 @@ input[type="number"] {
   justify-content: center;
   flex-direction: column;
 }
-.login-form .login-left input[type="text"],
-.login-form input[type="number"],
+.login-form .login-left input[type="email"],
+.login-form input[type="password"],
 .login-form .login-btn {
   background: var(--white);
   border: none;

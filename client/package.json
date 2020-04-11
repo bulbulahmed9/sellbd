@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.19.1",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "filepond": "^4.9.5",
     "filepond-plugin-file-validate-type": "^1.2.4",
@@ -51,5 +51,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

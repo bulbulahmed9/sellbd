@@ -5,7 +5,10 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 
+
 const Footer = () => {
+
+
   return (
     <div className="footer">
       <div className="footer-top">
