@@ -56,13 +56,8 @@ const NewLogin = () => {
                           <p className="login-title">
                             Bike Bazar BD <MdDirectionsBike />{" "}
                           </p>
-                          <button className="fb">
-                            Log in with Facebook
-                        </button>
-                          <button className="email">
-                           
-                          </button>
-                          <a href="/auth/google"> Log in with Gmail</a>
+                          <a className="fb" href="/auth/facebook"> Log in with Facebook</a>
+                          <a className="email" href="/auth/google"> Log in with Gmail</a>
                           <div className="name-section">
                             <input
                               type="email"

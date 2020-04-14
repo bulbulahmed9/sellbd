@@ -2,28 +2,19 @@ const mongoose = require('mongoose')
 
 // User Schema
 const userSchema = new mongoose.Schema({
-    googleId: String,
-    email: String
-    // name: {
-    //     type: String,
-    //     trim: true,
-    //     required: true
-    // },
-    // email: {
-    //     type: String,
-    //     trim: true,
-    //     required: true,
-    //     unique: true
-    // },
-    // password: {
-    //     type: String,
-    // },
-    // photo: {
-    //     type: String,
-    //     required: true,
-    //     default:
-    //         "https://res.cloudinary.com/geekysrm/image/upload/v1542221619/default-user.png"
-    // }
+    userId: String,
+    name: {
+        type: String,
+        // required: true
+    },
+    email: {
+        type: String,
+        trim: true,
+        // unique: true
+    },
+    password: {
+        type: String,
+    },
     // advertisements: {
 
     // }
