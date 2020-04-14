@@ -60,8 +60,9 @@ const NewLogin = () => {
                             Log in with Facebook
                         </button>
                           <button className="email">
-                            Log in with Gmail
-                        </button>
+                           
+                          </button>
+                          <a href="/auth/google"> Log in with Gmail</a>
                           <div className="name-section">
                             <input
                               type="email"

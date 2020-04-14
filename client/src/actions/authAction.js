@@ -1,19 +1,18 @@
 import axios from "axios";
 
-import { SET_CURRENT_USER } from "./types";
+import { GET_USER } from "./types";
 
-export const setCurrentUser = () => dispatch => {
+export const loadUser = () => dispatch => {
   axios
-    .get("/api/current_user")
+    .get("/api/currentUser")
     .then(res => {
-      //this.setState({ profile: res.data });
       console.log(res.data);
       dispatch({
-        type: SET_CURRENT_USER,
+        type: GET_USER,
         payload: res.data
       });
     })
     .catch(err => {
-      console.log(err.response);
+      // console.log(err.response);
     });
 };

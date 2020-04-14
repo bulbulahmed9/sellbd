@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   Switch,
   Route,
@@ -16,8 +16,20 @@ import Account from "./Account";
 import Settings from "./Settings";
 import MemberShip from "./MemberShip";
 
-const Profile = () => {
+// connect redux
+import {connect} from 'react-redux'
+// action
+import {loadUser} from '../../actions/authAction'
+
+const Profile = ({ loadUser, user }) => {
+
+
   let { path, url } = useRouteMatch();
+
+
+  useEffect(() => {
+    loadUser()
+  },[])
 
   return (
     <>
@@ -32,7 +44,7 @@ const Profile = () => {
                   className="link"
                   to={`${url}/account`}
                 >
-                  My Account
+                  My Account {user && user.googleId}
                 </NavLink>
               </li>
               <li>
@@ -78,4 +90,8 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+const mapStateToProps = state => ({
+  user: state.auth
+})
+
+export default connect(mapStateToProps, {loadUser})(Profile);
