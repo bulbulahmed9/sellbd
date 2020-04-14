@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 // User Schema
 const userSchema = new mongoose.Schema({
-    googleId: String
+    googleId: String,
+    email: String
     // name: {
     //     type: String,
     //     trim: true,
