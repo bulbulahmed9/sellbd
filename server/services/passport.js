@@ -25,7 +25,7 @@ passport.use(new GoogleStrategy({
   async (accessToken, refreshToken, profile, done) => {
     console.log("profile", profile)
     try {
-      const user = await User.findOne({ userId: profile.id });
+      const user = await User.findOne({ OauthId: profile.id });
 
       if (user) {
         return done(null, user);
@@ -36,11 +36,11 @@ passport.use(new GoogleStrategy({
 
     try {
       const newUser = await new User({
-        userId: profile.id,
+        OauthId: profile.id,
         logByOauth: true,
         provider: profile.provider,
         name: profile.displayName,
-        email: profile.emails[0].value
+        googleEmail: profile.emails[0].value
       }).save();
       done(null, newUser);
     } catch (err) {
@@ -61,7 +61,7 @@ passport.use(new FacebookStrategy({
   async (accessToken, refreshToken, profile, done) => {
     console.log("profile", profile)
     try {
-      const user = await User.findOne({ userId: profile.id });
+      const user = await User.findOne({ OauthId: profile.id });
 
       if (user) {
         return done(null, user);
@@ -72,10 +72,11 @@ passport.use(new FacebookStrategy({
 
     try {
       const newUser = await new User({
-        userId: profile.id,
+        OauthId: profile.id,
         logByOauth: true,
         provider: profile.provider,
-        name: profile.displayName
+        name: profile.displayName,
+        fbEmail: profile.emails[0].value
       }).save();
       done(null, newUser);
     } catch (err) {

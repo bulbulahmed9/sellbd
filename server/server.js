@@ -27,9 +27,16 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session())
+require("./middleware/jwt")(passport);
 
 // routes
-require('./routes/authRoute')(app)
+require('./routes/OauthRoute')(app)
+
+
+//=== 4 - CONFIGURE ROUTES
+//Configure Route
+require('./routes/index')(app);
+
 
 // Start the Server
 const PORT = process.env.PORT || 5000
