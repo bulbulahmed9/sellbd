@@ -6,7 +6,7 @@ module.exports = app => {
         passport.authenticate('google', { scope: ['profile', 'email'] }));
 
     app.get('/auth/facebook',
-        passport.authenticate('facebook', { scope: ['email', ] }));
+        passport.authenticate('facebook', { scope: ['email',] }));
 
     app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
         res.redirect('/profile')

@@ -5,12 +5,13 @@ const cors = require('cors')
 const passport = require("passport");
 const cookieSession = require('cookie-session')
 require('dotenv').config()
-require('./model/userModel')
-require('./services/passport')
 
-const connectDB = require('./config/db')
+
+
+
 
 // connect DB
+const connectDB = require('./config/db')
 connectDB();
 
 // init middleware
@@ -18,24 +19,23 @@ app.use(express.json({ extended: true }))
 app.use(cors())
 app.use(morgan('dev'))
 
-app.use(
-    cookieSession({
-        maxAge:30 * 24 * 60 * 60 *1000,
-        keys:[process.env.cookieKey]
-    })
-)
+// app.use(
+//     cookieSession({
+//         maxAge: 30 * 24 * 60 * 60 * 1000,
+//         keys: [process.env.cookieKey]
+//     })
+// )
 
 app.use(passport.initialize());
-app.use(passport.session())
-require("./middleware/jwt")(passport);
+require('./services/googleStrategy')
+// app.use(passport.session())
+// require("./middleware/jwt")(passport);
 
 // routes
-require('./routes/OauthRoute')(app)
+require('./routes/googleAuth')(app)
 
-
-//=== 4 - CONFIGURE ROUTES
-//Configure Route
-require('./routes/index')(app);
+// test route
+app.use('/', require('./routes/advertise'))
 
 
 // Start the Server

@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
+import axios from 'axios'
+
 //style
 import "./Profile.scss";
 
@@ -28,7 +30,15 @@ const Profile = ({ loadUser, user }) => {
 
 
   useEffect(() => {
+    axios.get('/user/post')
+      .then(data => {
+        console.log(data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     loadUser()
+
   },[])
 
   return (
