@@ -30,7 +30,6 @@ const userSchema = new mongoose.Schema({
     phone: {
         type: Number,
         trim: true,
-        default: null
     },
     advertises: [
         {
