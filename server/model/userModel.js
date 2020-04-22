@@ -24,12 +24,16 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
     },
-    avatar: {
-        type: String,
-    },
     phone: {
         type: Number,
         trim: true,
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    verificationCode: {
+        type: String
     },
     advertises: [
         {

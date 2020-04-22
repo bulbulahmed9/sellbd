@@ -41,6 +41,7 @@ passport.use(new FacebookStrategy({
                 facebookId: profile.id,
                 facebookEmail: profile.emails[0].value !== undefined && profile.emails[0].value !== null && profile.emails[0].value,
                 name: profile.displayName,
+                isVerified: true
             }).save();
             done(null, newUser);
         } catch (err) {

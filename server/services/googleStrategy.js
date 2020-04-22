@@ -41,6 +41,7 @@ passport.use(new GoogleStrategy({
                 googleId: profile.id,
                 googleEmail: profile.emails[0].value,
                 name: profile.displayName,
+                isVerified: true
             }).save();
             done(null, newUser);
         } catch (err) {

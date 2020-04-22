@@ -28,8 +28,9 @@ require('./services/facebookStrategy')
 require('./routes/googleAuth')(app)
 require('./routes/facebookAuth')(app)
 
-// test route
+
 app.use('/', require('./routes/advertise'))
+app.use('/', require('./routes/localAuth'))
 
 
 // Start the Server

@@ -6,6 +6,8 @@ const passport = require('passport')
 
 const auth = require('../middleware/auth')
 
+const sendEmail = require('../utils/index')
+
 router.post('/user/post', async (req, res) => {
     try {
         const userId = req.user.id
@@ -20,7 +22,7 @@ router.post('/user/post', async (req, res) => {
     }
 })
 
-router.get('/user/post', auth,  async (req, res) => {
+router.get('/user/post', auth,   async (req, res) => {
     console.log(`requested user id ${req.user.id}`)
     try {
         const userId = req.user.id
@@ -31,5 +33,14 @@ router.get('/user/post', auth,  async (req, res) => {
         console.log(error.message)
     }
 })
+
+// router.get('/test', async (req, res) => {
+//     try {
+//         await sendEmail()
+//         res.send('success')
+//     } catch (err) {
+//         console.log(err.message)
+//     }
+// })
 
 module.exports = router
