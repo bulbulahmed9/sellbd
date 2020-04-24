@@ -3,15 +3,25 @@ const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
 const passport = require("passport");
+const cookieParser = require('cookie-parser')
 require('dotenv').config()
 
-
+const cookieSession = require('cookie-session')
 
 
 
 // connect DB
 const connectDB = require('./config/db')
 connectDB();
+
+app.use(cookieParser());
+
+// app.use(
+//     cookieSession({
+//         maxAge:30 * 24 * 60 * 60 *1000,
+//         keys:[process.env.cookieKey]
+//     })
+// )
 
 // init middleware
 app.use(express.json({ extended: true }))
@@ -20,13 +30,16 @@ app.use(morgan('dev'))
 
 
 app.use(passport.initialize());
+app.use(passport.session())
 require('./services/googleStrategy')
 require('./services/facebookStrategy')
+// require('./services/localStrategy')
 
 
 // routes
 require('./routes/googleAuth')(app)
 require('./routes/facebookAuth')(app)
+// app.use('/', require('./routes/localAuthTest'))
 
 
 app.use('/', require('./routes/advertise'))

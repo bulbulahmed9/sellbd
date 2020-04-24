@@ -18,27 +18,30 @@ module.exports = app => {
             }
           };
 
-        jwt.sign(
+          jwt.sign(
             payload,
             `${process.env.jwtSecret}`,
             { expiresIn: 360000 },
             (err, token) => {
-                if (err) throw err;
-                res.json({ token });
-              }
-        )
-        // res.redirect('/profile')
+              if (err) throw err;
+              res.cookie('mycookie', token)
+              res.json({ token });
+            }
+          );
+        // res.send('success')
     })
 
-    // app.get('/api/currentUser', auth, (req, res) => {
-    //     console.log(req.user)
-    //     res.send(req.user)
-    // })
+    app.get('/api/currentUser', (req, res) => {
+        console.log(req.user)
+        res.send(req.user)
+    })
 
-    // app.get('/api/logout', (req, res) => {
-    //     req.logout()
-    //     res.redirect('/')
-    //     console.log('logout seccess')
-    // })
+    app.get('/api/logout', (req, res) => {
+        // req.logout()
+        // res.redirect('/')
+        console.log('logout seccess')
+        res.clearCookie('mycookie')
+        res.send('logout success')
+    })
 
 }

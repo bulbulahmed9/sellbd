@@ -15,15 +15,15 @@ const User = require('../model/userModel')
 // @access   Public
 
 router.post('/api/user/register', [
-    check('name', 'Name is required')
-      .not()
-      .isEmpty(),
-    check('email', 'Please include a valid email').isEmail(),
-    check(
-      'password',
-      'Please enter a password with 6 or more characters'
-    ).isLength({ min: 6 })
-  ],
+  check('name', 'Name is required')
+    .not()
+    .isEmpty(),
+  check('email', 'Please include a valid email').isEmail(),
+  check(
+    'password',
+    'Please enter a password with 6 or more characters'
+  ).isLength({ min: 6 })
+],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -31,53 +31,89 @@ router.post('/api/user/register', [
     }
     const { name, email, password } = req.body;
     try {
-        // console.log(Math.floor(100000 + Math.random() * 900000))
-            let user = await User.findOne({ email });
-      
-            if (user) {
-              return res
-                .status(400)
-                .json({ errors: [{ msg: 'User already exists' }] });
-            }
+      // console.log(Math.floor(100000 + Math.random() * 900000))
+      let user = await User.findOne({ email });
 
-            const code = Math.floor(100000 + Math.random() * 900000)
-            const toEmail = email
-      
-            user = new User({
-              name,
-              email,
-              password,
-              verificationCode: code
-            });
+      if (user) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'User already exists' }] });
+      }
 
-            sendEmail(code, toEmail);
-      
-            const salt = await bcrypt.genSalt(10);
-      
-            user.password = await bcrypt.hash(password, salt);
+      const code = Math.floor(100000 + Math.random() * 900000)
+      const toEmail = email
 
-            user.verificationCode = await bcrypt.hash(code.toString() , salt)
-      
-            await user.save();
-      
-            const payload = {
-              user: {
-                id: user.id
-              }
-            };
-      
-            jwt.sign(
-              payload,
-              `${process.env.jwtSecret}`,
-              { expiresIn: 360000 },
-              (err, token) => {
-                if (err) throw err;
-                res.json({ token });
-              }
-            );
+      user = new User({
+        name,
+        email,
+        password,
+        verificationCode: code
+      });
+
+      sendEmail(code, toEmail);
+
+      const salt = await bcrypt.genSalt(10);
+
+      user.password = await bcrypt.hash(password, salt);
+
+      user.verificationCode = await bcrypt.hash(code.toString(), salt)
+
+      await user.save();
+
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+
+      jwt.sign(
+        payload,
+        `${process.env.jwtSecret}`,
+        { expiresIn: 360000 },
+        (err, token) => {
+          if (err) throw err;
+          res.cookie('mycookie', token)
+          res.json({ token });
+        }
+      );
     } catch (err) {
-        console.log(err.message)
+      console.log(err.message)
     }
+  })
+
+
+// set cookie
+router.get('/set', (req, res) => {
+  const payload = {
+    user: {
+      id: 1
+    }
+  };
+
+  jwt.sign(
+    payload,
+    `${process.env.jwtSecret}`,
+    { expiresIn: 360000 },
+    (err, token) => {
+      if (err) throw err;
+      res.cookie('mycookie', token)
+      res.json({ token });
+    }
+  );
+  // res.cookie('mycookie', payload)
+  // res.send('cookie set')
+})
+
+// back cookie
+
+router.get('/cookie', (req, res) => {
+  console.log(req.cookies)
+  const token = req.cookies.mycookie
+  if (token) {
+    const decoded = jwt.verify(token, `${process.env.jwtSecret}`);
+    console.log(decoded)
+  }
+  res.send(req.cookies)
 })
 
 
@@ -85,32 +121,65 @@ router.post('/api/user/register', [
 // @desc     verify user
 // @access   private
 
-router.put('/api/user/verify', auth, async (req, res) => {
-    try {
-        const { code } = req.body;
-        if(!code){
-            return res.status(400).json({ msg: "Please provide a code" })
-        }
-        const { id } = req.user
-        let user = await User.findById({ _id: id })
-        if(user.isVerified){
-            return res.json({ msg: "You are already verified" })
-        }
-        const isMatch = await bcrypt.compare(code.toString(), user.verificationCode);
-        
-
-      if (!isMatch) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'Invalid Code' }] });
-      }
-        user.isVerified = true;
-
-        await user.save()
-        res.send('verification succesful')
-    } catch (err) {
-        console.log(err.message)
+router.put('/api/user/verify', async (req, res) => {
+  try {
+    const { code } = req.body;
+    if (!code) {
+      return res.status(400).json({ msg: "Please provide a code" })
     }
+    const { id } = req.user
+    let user = await User.findById({ _id: id })
+    if (user.isVerified) {
+      return res.json({ msg: "You are already verified" })
+    }
+    const isMatch = await bcrypt.compare(code.toString(), user.verificationCode);
+
+
+    if (!isMatch) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: 'Invalid Code' }] });
+    }
+    user.isVerified = true;
+
+    await user.save()
+    res.send('verification succesful')
+  } catch (err) {
+    console.log(err.message)
+  }
+})
+
+
+// login for test
+
+router.post('/api/user/login', async (req, res) => {
+  try {
+    let { email, password } = req.body
+    let user = await User.findOne({ email })
+    if (!user) {
+      res.send('user not exist')
+    }
+    const payload = {
+      user: {
+        id: user.id
+      }
+    };
+  
+    jwt.sign(
+      payload,
+      `${process.env.jwtSecret}`,
+      { expiresIn: 360000 },
+      (err, token) => {
+        if (err) throw err;
+        res.cookie('mycookie', token)
+        res.json({ token });
+      }
+    );
+  } catch (err) {
+    console.log(err.message);
+
+  }
+
 })
 
 module.exports = router;

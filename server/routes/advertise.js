@@ -23,12 +23,13 @@ router.post('/user/post', async (req, res) => {
 })
 
 router.get('/user/post', auth,   async (req, res) => {
-    console.log(`requested user id ${req.user.id}`)
+    // console.log(`requested user id ${req.user.id}`)
     try {
         const userId = req.user.id
         const advertise = await Advertise.find({ user: userId })
         console.log(advertise.length)
         res.json({ advertise })
+        console.log(req.user)
     } catch (error) {
         console.log(error.message)
     }
