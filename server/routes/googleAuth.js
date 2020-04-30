@@ -17,31 +17,8 @@ module.exports = app => {
               id: req.user.id
             }
           };
-
-          jwt.sign(
-            payload,
-            `${process.env.jwtSecret}`,
-            { expiresIn: 360000 },
-            (err, token) => {
-              if (err) throw err;
-              res.cookie('mycookie', token)
-              res.json({ token });
-            }
-          );
-        // res.send('success')
+          res.clearCookie('mycookie')
+          res.cookie('mycookie', payload, { maxAge: 9000000 })
+          res.send('login success');
     })
-
-    app.get('/api/currentUser', (req, res) => {
-        console.log(req.user)
-        res.send(req.user)
-    })
-
-    app.get('/api/logout', (req, res) => {
-        // req.logout()
-        // res.redirect('/')
-        console.log('logout seccess')
-        res.clearCookie('mycookie')
-        res.send('logout success')
-    })
-
 }

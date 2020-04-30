@@ -28,7 +28,7 @@ router.get('/user/post', auth,   async (req, res) => {
         const userId = req.user.id
         const advertise = await Advertise.find({ user: userId })
         console.log(advertise.length)
-        res.json({ advertise })
+        res.json({ advertise, userId })
         console.log(req.user)
     } catch (error) {
         console.log(error.message)

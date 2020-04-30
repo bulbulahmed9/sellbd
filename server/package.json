@@ -14,7 +14,6 @@
     "@sendgrid/mail": "^7.0.0",
     "bcrypt": "^4.0.1",
     "cookie-parser": "^1.4.5",
-    "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -24,9 +23,7 @@
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
-    "passport-google-oauth20": "^2.0.0",
-    "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
