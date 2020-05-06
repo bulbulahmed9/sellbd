@@ -8,8 +8,6 @@ const sendEmail = require('../utils/index')
 
 const User = require('../model/userModel')
 
-// sign up -> validation => check isUser already => hash password => save data => send email to verify => and send a msg : check your email to verify => if verified send back to log in page,
-
 // @route    GET api/user/register
 // @desc     sign up user
 // @access   Public
@@ -31,7 +29,6 @@ router.post('/api/user/register', [
     }
     const { name, email, password } = req.body;
     try {
-      // console.log(Math.floor(100000 + Math.random() * 900000))
       let user = await User.findOne({ email });
 
       if (user) {
@@ -132,8 +129,6 @@ router.put('/api/user/verify', async (req, res) => {
 // @desc     log in user
 // @access   public
 
-// extract data , check if user, check if verified, check password is match, generate cookie
-
 router.post('/api/user/login',
 [
   check('email', 'Please include a valid email').isEmail(),
@@ -200,7 +195,6 @@ router.get('/api/user/logout', (req, res) => {
 
 router.get('/api/user/profile',auth, async (req, res, next) => {
   try {
-    console.log(req.cookies)
     const {id} = req.cookies.mycookie.user
     const user = await User.findById({ _id: id }).select('-password').select('-verificationCode')
     res.json(user)

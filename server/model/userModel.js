@@ -34,13 +34,7 @@ const userSchema = new mongoose.Schema({
     },
     verificationCode: {
         type: String
-    },
-    advertises: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Advertise'
-        }
-    ]
+    }
 }, { timestamps: true })
 
 
