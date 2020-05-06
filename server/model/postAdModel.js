@@ -7,33 +7,31 @@ const postAdSchema = mongoose.Schema({
     },
     category: {
         type: String,
-        
+        required: true
     },
     subCategory: {
         type: String,
-        
+        required: true
     },
-    image: [
-        {
-            type: String,
-            
-        }
-    ],
+    images: {
+        type: [],
+        required: true
+    },
     condition: {
         type: String,
-        
+        required: true
     },
     title: {
         type: String,
-        
+        required: true
     },
     description: {
         type: String,
-        
+        required: true
     },
     price: {
         type: Number,
-        
+        required: true
     },
     isNegotiable: {
         type: Boolean,
