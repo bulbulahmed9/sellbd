@@ -189,19 +189,7 @@ router.get('/api/user/logout', (req, res) => {
 })
 
 
-// route get /api/user/profile
-// desc get user profile
-// access // private
 
-router.get('/api/user/profile',auth, async (req, res, next) => {
-  try {
-    const {id} = req.cookies.mycookie.user
-    const user = await User.findById({ _id: id }).select('-password').select('-verificationCode')
-    res.json(user)
-  } catch (err) {
-    console.log(err.message)
-  }
-})
 
 
 module.exports = router;

@@ -32,6 +32,7 @@ require('./routes/Auth/facebookAuth')(app)
 // general route 
 app.use('/', require('./routes/Auth/localAuth'))
 app.use('/', require('./routes/advertiseRoute'))
+app.use('/', require('./routes/profileRoute'))
 
 
 // Start the Server
