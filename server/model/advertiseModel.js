@@ -1,20 +1,25 @@
 const mongoose = require('mongoose')
 
-const postAdSchema = mongoose.Schema({
+// advertise schema
+const advertiseSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    category: {
+    division: {
         type: String,
         required: true
     },
-    subCategory: {
+    area: {
         type: String,
         required: true
     },
     images: {
         type: [],
+        required: true
+    },
+    category: {
+        type: String,
         required: true
     },
     condition: {
@@ -39,4 +44,4 @@ const postAdSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('PostAd', postAdSchema)
+module.exports = mongoose.model('Advertise', advertiseSchema)

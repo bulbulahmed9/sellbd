@@ -3,7 +3,7 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
-const auth = require('../middleware/auth')
+const auth = require('../../middleware/auth')
 
 module.exports = app => {
     app.get('/auth/google',

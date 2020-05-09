@@ -1,12 +1,12 @@
 const router = require('express').Router()
 const bcrypt = require('bcrypt')
-const auth = require('../middleware/auth')
+const auth = require('../../middleware/auth')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const { check, validationResult } = require('express-validator')
-const sendEmail = require('../utils/index')
+const sendEmail = require('../../utils/index')
 
-const User = require('../model/userModel')
+const User = require('../../model/userModel')
 
 // @route    GET api/user/register
 // @desc     sign up user

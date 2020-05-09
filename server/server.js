@@ -26,13 +26,12 @@ require('./services/facebookStrategy')
 
 
 // routes for oAuth
-require('./routes/googleAuth')(app)
-require('./routes/facebookAuth')(app)
+require('./routes/Auth/googleAuth')(app)
+require('./routes/Auth/facebookAuth')(app)
 
 // general route 
-app.use('/', require('./routes/advertise'))
-app.use('/', require('./routes/localAuth'))
-app.use('/', require('./routes/postAd'))
+app.use('/', require('./routes/Auth/localAuth'))
+app.use('/', require('./routes/advertiseRoute'))
 
 
 // Start the Server
