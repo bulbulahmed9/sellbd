@@ -75,9 +75,9 @@ const getAllAds = async (req, res) => {
             filterData.price = {$gte: price}
         }
 
-        if (searchKeyword) filterData.searchKeyword = { title: new RegExp(searchKeyword, "i") };
+        if (searchKeyword) filterData.title = new RegExp(searchKeyword, "i");
         
-        const ads = await Advertise.find({$text: {$search: searchKeyword}}).limit(limit * 1).skip((page - 1) * limit)
+        const ads = await Advertise.find(filterData).limit(limit * 1).skip((page - 1) * limit)
         const count = await Advertise.countDocuments()
         
         res.json({
@@ -90,4 +90,49 @@ const getAllAds = async (req, res) => {
     }
 }
 
-module.exports = { postAd, getAllAds }
+// get single ad by id 
+const getAdById = async (req, res) => {
+    try {
+        const result = await Advertise.findById(req.params.id)
+        console.log(req.param.id)
+        if(!result){
+            return res.json({msg: 'no data found'})
+        }
+        res.json(result)
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+// get all ads by user id
+const getAllAdsByUser = async (req, res) => {
+    try {
+        const {id} = req.cookies.mycookie.user
+        const result = await Advertise.find({user: id})
+        if(!result){
+            return res.json({msg: 'Currently you have no ads'})
+        }
+        res.json(result)
+        console.log(result.length)
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+// show related ads depends on single ad title 
+const relatedAds = async(req, res) => {
+    
+    try {
+        let result;
+        result = await Advertise.find({title: new RegExp(req.body.title, "i")}).limit(10)
+        if(!result){
+            result = await Advertise.find().limit(10)
+        }
+        res.json(result)
+        console.log(result.length)
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+module.exports = { postAd, getAllAds, getAdById, getAllAdsByUser, relatedAds }
