@@ -38,7 +38,7 @@ app.use('/', require('./routes/advertiseRoute'))
 app.use('/', require('./routes/profileRoute'))
 
 // Home
-app.get('/', (req, res) => res.send('I am Home'))
+app.get('/', (req, res) => res.send('App is running'))
 
 // Start the Server
 const PORT = process.env.PORT || 5000
