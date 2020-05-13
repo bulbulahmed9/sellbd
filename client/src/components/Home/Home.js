@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import HomeTop from './HomeTop/HomeTop'
 import HomeProductList from './HomeProducts/HomeProductList/HomeProductList'
 import Ad from '../Advertisement/Ad'

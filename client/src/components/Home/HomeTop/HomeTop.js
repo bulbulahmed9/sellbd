@@ -47,7 +47,7 @@ const HomeTop = () => {
         <div className="overlay">
           <Container>
             <h1>
-              Buy and sell bikes & accessories <br /> find all kind of bike
+              Buy and sell anything <br /> find all kind of sell
               solutions
             </h1>
             <p>
