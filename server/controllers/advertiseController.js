@@ -24,7 +24,7 @@ const postAd = async (req, res) => {
                 urls.push(newPath)
                 fs.unlinkSync(path)
             }
-            for(let i=0; i <= 50; i++){
+            // for(let i=0; i <= 50; i++){
             const advertise = new Advertise({
                 user: req.user.id,
                 division: division,
@@ -38,7 +38,7 @@ const postAd = async (req, res) => {
                 isNegotiable: isNegotiable
             })
             await advertise.save();
-            }
+            // }
 
             res.status(200).json({
                 message: 'Posted advertise successfully',
@@ -107,7 +107,7 @@ const getAdById = async (req, res) => {
 // get all ads by user id
 const getAllAdsByUser = async (req, res) => {
     try {
-        const {id} = req.cookies.mycookie.user
+        const {id} = req.user.id
         const result = await Advertise.find({user: id})
         if(!result){
             return res.json({msg: 'Currently you have no ads'})

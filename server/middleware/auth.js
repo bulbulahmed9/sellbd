@@ -1,17 +1,21 @@
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 const auth = (req, res, next) => {
+  // get token from header 
+  const token = req.header('x-auth-token')
+  // check if not token
+  if(!token){
+    return res.status(401).json({ msg: "No token, authorization denied" });
+  }
+  // verify token 
   try {
-    const cookie = req.cookies.mycookie
-    if(!cookie){
-      return res.json({
-        success: false,
-        msg: 'Authorization Denied'
-      })
-    }
-    req.user = cookie.user
+    const decoded = jwt.verify(token, process.env.jwtSecret)
+    console.log(decoded)
+    req.user = decoded.payload.user
     next()
   } catch (err) {
-    console.log(err.message);
+    res.status(401).json({ msg: "Token is not valid" });
   }
 }
 

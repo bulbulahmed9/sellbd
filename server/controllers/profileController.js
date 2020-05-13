@@ -4,7 +4,7 @@ const User = require('../model/userModel')
 // get user profile
 const getProfile = async (req, res, next) => {
     try {
-      const {id} = req.cookies.mycookie.user
+      const {id} = req.user.id
       const user = await User.findById({ _id: id }).select('-password').select('-verificationCode')
       res.json(user)
     } catch (err) {
@@ -15,7 +15,7 @@ const getProfile = async (req, res, next) => {
 // update user phone
 const updatePhone = async(req, res) => {
     try {
-        const {id} = req.cookies.mycookie.user
+        const {id} = req.user.id
         const {phone} = req.body
         if(!phone){
             return res.json({

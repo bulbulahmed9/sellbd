@@ -1,21 +1,25 @@
 
 const passport = require('passport')
 require('dotenv').config()
+const jwt = require('jsonwebtoken')
 
 module.exports = app => {
-    app.get('/auth/facebook',
-        passport.authenticate('facebook'));
+  app.get('/auth/facebook',
+    passport.authenticate('facebook'));
 
 
-    app.get('/auth/facebook/callback', passport.authenticate('facebook'), (req, res) => {
+  app.get('/auth/facebook/callback', passport.authenticate('facebook'), (req, res) => {
 
-      const payload = {
-        user: {
-          id: req.user.id
-        }
-      };
-      res.clearCookie('mycookie')
-      res.cookie('mycookie', payload, { maxAge: 900000 })
-      res.send('login success');
-    })
+    const payload = {
+      user: {
+        id: req.user.id
+      }
+    };
+    const token = jwt.sign({
+      payload
+    }, process.env.jwtSecret, { expiresIn: '7d' });
+    res.clearCookie('mycookie')
+    res.cookie('mycookie', token)
+    res.send('login success');
+  })
 }

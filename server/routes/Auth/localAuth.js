@@ -77,7 +77,7 @@ router.post('/api/user/register', [
 router.put('/api/user/verify', async (req, res) => {
   try {
     const { email, code } = req.body;
-    if(!email){
+    if (!email) {
       return res.status(400).json({
         success: false,
         msg: "Please provide your email"
@@ -89,9 +89,9 @@ router.put('/api/user/verify', async (req, res) => {
         msg: "Please provide a code"
       })
     }
-    let user = await User.findOne( { email: email } )
-    
-    if(!user){
+    let user = await User.findOne({ email: email })
+
+    if (!user) {
       return res.json({
         success: false,
         msg: 'User not found'
@@ -107,10 +107,10 @@ router.put('/api/user/verify', async (req, res) => {
     if (!isMatch) {
       return res
         .status(400)
-        .json({ 
+        .json({
           success: false,
           msg: 'Invalid Code'
-         });
+        });
     }
     user.isVerified = true;
 
@@ -130,66 +130,67 @@ router.put('/api/user/verify', async (req, res) => {
 // @access   public
 
 router.post('/api/user/login',
-[
-  check('email', 'Please include a valid email').isEmail(),
-  check(
-    'password',
-    'Please enter a password with 6 or more characters'
-  ).isLength({ min: 6 })
-],
-async (req, res) => {
-  const errors = validationResult(req);
+  [
+    check('email', 'Please include a valid email').isEmail(),
+    check(
+      'password',
+      'Please enter a password with 6 or more characters'
+    ).isLength({ min: 6 })
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-  try {
-    let { email, password } = req.body
-    console.log(email, password)
-    let user = await User.findOne({ email })
-    if (!user) {
-     return res.send('User not exists')
-    }
-    if(!user.isVerified){
-      return res.json({
-        success: false,
-        msg: 'User not verified'
-      })
-    }
-    const isMatchPasswod = await bcrypt.compare(password, user.password)
-    if(!isMatchPasswod){
-      return res.json({
-        success: false,
-        msg: "Password doesn't match"
-      })
-    }
-    const payload = {
-      user: {
-        id: user.id
+    try {
+      let { email, password } = req.body
+      console.log(email, password)
+      let user = await User.findOne({ email })
+      if (!user) {
+        return res.send('User not exists')
       }
-    };
-    res.clearCookie('mycookie')
-    res.cookie('mycookie', payload, { maxAge: 900000 })
-    res.send('login success');
-  } catch (err) {
-    console.log(err.message);
-  }
+      if (!user.isVerified) {
+        return res.json({
+          success: false,
+          msg: 'User not verified'
+        })
+      }
+      const isMatchPasswod = await bcrypt.compare(password, user.password)
+      if (!isMatchPasswod) {
+        return res.json({
+          success: false,
+          msg: "Password doesn't match"
+        })
+      }
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+      const token = jwt.sign({
+        payload
+      }, process.env.jwtSecret, { expiresIn: '7d' });
+      res.json({
+        token,
+        msg: 'Login success'
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
 
-})
+  })
 
 // @route    get /api/user/logout
 // @desc     log in user
 // @access   public
 
-router.get('/api/user/logout', (req, res) => {
-  res.clearCookie('mycookie')
-  res.json({
-    success: true,
-    msg: 'Successfully logged out'
-  })
-})
-
-
-
+// router.get('/api/user/logout', (req, res) => {
+//   res.clearCookie('mycookie')
+//   res.json({
+//     success: true,
+//     msg: 'Successfully logged out'
+//   })
+// })
 
 
 module.exports = router;
