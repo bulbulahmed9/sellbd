@@ -31,6 +31,20 @@ router.post('/api/user/register', [
     try {
       let user = await User.findOne({ email });
 
+      
+      if (user && user.isVerified === false) {
+        const code = Math.floor(100000 + Math.random() * 900000)
+        const toEmail = email
+        const salt = await bcrypt.genSalt(10);
+        let newCode = await bcrypt.hash(code.toString(), salt)
+        user.verificationCode = newCode
+        await user.save()
+        sendEmail(code, toEmail);
+        return res.json({
+          msg: "You are already registered, check your email for new verification code"
+        })
+      }
+
       if (user) {
         return res
           .status(400)
