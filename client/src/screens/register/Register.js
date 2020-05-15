@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import "./register.css";
 
-const Register = () => {
+import { register } from '../../services/actions/authAction'
+import MiniLoader from "../../components/MiniLoader";
+
+const Register = ({ register, authLoading }) => {
+
+
+  const [loading, setLoading] = useState(false)
+
   return (
     <>
       <Formik
@@ -15,8 +24,8 @@ const Register = () => {
         }}
         validate={values => {
           const errors = {};
-          if(!values.name){
-              errors.name = "Name is required"
+          if (!values.name) {
+            errors.name = "Name is required"
           }
           if (!values.email) {
             errors.email = "Email is required";
@@ -31,19 +40,19 @@ const Register = () => {
           } else if (values.password.length < 6) {
             errors.password = "Password must be equal or greater than 6 characters";
           }
-          if(!values.password2){
-              errors.password2 = "Enter your password again"
+          if (!values.password2) {
+            errors.password2 = "Enter your password again"
           }
-          else if(values.password !== values.password2){
-              errors.password2 = "Password does not match"
+          else if (values.password !== values.password2) {
+            errors.password2 = "Password does not match"
           }
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+          const { name, email, password } = values
+          register({ name, email, password })
+          setLoading(true)
+          setSubmitting(false);
         }}
       >
         {({
@@ -118,9 +127,9 @@ const Register = () => {
                             )}
                           </div>
                           <button type="submit" className="register-btn">
-                            Register
-                        </button>
-                        <p className="ml-5" style={{color: "#ffffff"}}>Already member? <Link style={{color: "#ffffff"}} to="/login">Login here</Link></p>
+                            Register {loading && authLoading && <MiniLoader />}
+                          </button>
+                          <p className="ml-5" style={{ color: "#ffffff" }}>Already member? <Link style={{ color: "#ffffff" }} to="/login">Login here</Link></p>
                         </div>
                       </div>
                     </div>
@@ -135,4 +144,13 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  register: PropTypes.func.isRequired,
+  authLoading: PropTypes.bool.isRequired
+}
+
+const mapStateToProps = state => ({
+  authLoading: state.authReducer.loading
+})
+
+export default connect(mapStateToProps, { register })(Register);

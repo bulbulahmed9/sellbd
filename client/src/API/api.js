@@ -1,14 +1,12 @@
-
-export const root = "http://localhost:5000"
-export const register = `${root}/api/user/register`
-export const verify = `${root}/api/user/verify`
-export const login = `${root}/api/user/login`
-export const google = `${root}/auth/google`
-export const facebook = `${root}/auth/facebook`
-export const profile = `${root}/api/user/profile`
-export const updatePhone = `${root}/api/user/profile/updatePhone`
-export const postAd = `${root}/api/postad`
-export const ads = `${root}/api/ads`
-// export const singleAd = `${root}/api/ads/:id`
-export const userAds = `${root}/api/user/ads`
-export const relatedAds = `${root}/api/user/relatedads`
+export const registerURL = "/api/user/register"
+export const verifyURL = "/api/user/verify"
+export const loginURL = "/api/user/login"
+export const googleURL = "/auth/google"
+export const facebookURL = "/auth/facebook"
+export const profileURL = "/api/user/profile"
+export const updatePhoneURL = "/api/user/profile/updatePhone"
+export const postAdURL = "/api/postad"
+export const adsURL = "/api/ads"
+// export const singleAdURL = "/api/ads/:id"
+export const userAdsURL = "/api/user/ads"
+export const relatedAdsURL = "/api/user/relatedads"
