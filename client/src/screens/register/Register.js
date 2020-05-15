@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import "./register.css";
 
+
 import { register } from '../../services/actions/authAction'
 import MiniLoader from "../../components/MiniLoader";
 
-const Register = ({ register, authLoading }) => {
-
-
-  const [loading, setLoading] = useState(false)
+const Register = ({ register, authLoading, history }) => {
 
   return (
     <>
@@ -50,8 +48,7 @@ const Register = ({ register, authLoading }) => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           const { name, email, password } = values
-          register({ name, email, password })
-          setLoading(true)
+          register({ name, email, password }, history)
           setSubmitting(false);
         }}
       >
@@ -63,7 +60,6 @@ const Register = ({ register, authLoading }) => {
           handleBlur,
           handleSubmit,
           isSubmitting
-          /* and other goodies */
         }) => (
             <form className="register-form" onSubmit={handleSubmit}>
               <div className="register-overlay">
@@ -116,7 +112,7 @@ const Register = ({ register, authLoading }) => {
                           <div className="password-section">
                             <input
                               type="password"
-                              placeholder="Enter Password Again"
+                              placeholder="Confirm Password"
                               name="password2"
                               onChange={handleChange}
                               onBlur={handleBlur}
@@ -127,7 +123,7 @@ const Register = ({ register, authLoading }) => {
                             )}
                           </div>
                           <button type="submit" className="register-btn">
-                            Register {loading && authLoading && <MiniLoader />}
+                            Register {authLoading && <MiniLoader />}
                           </button>
                           <p className="ml-5" style={{ color: "#ffffff" }}>Already member? <Link style={{ color: "#ffffff" }} to="/login">Login here</Link></p>
                         </div>
@@ -146,11 +142,13 @@ const Register = ({ register, authLoading }) => {
 
 Register.propTypes = {
   register: PropTypes.func.isRequired,
-  authLoading: PropTypes.bool.isRequired
+  authLoading: PropTypes.bool.isRequired,
+  res: PropTypes.object
 }
 
 const mapStateToProps = state => ({
-  authLoading: state.authReducer.loading
+  authLoading: state.authReducer.loading,
+  res: state.authReducer.res
 })
 
 export default connect(mapStateToProps, { register })(Register);

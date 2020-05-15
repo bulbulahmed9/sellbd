@@ -25,7 +25,7 @@ router.post('/api/user/register', [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(200).json({ errors: errors.array() });
     }
     const { name, email, password } = req.body;
     try {
@@ -40,16 +40,15 @@ router.post('/api/user/register', [
         user.verificationCode = newCode
         await user.save()
         sendEmail(code, toEmail);
-        return res.json({
+        return res.status(201).json({
           msg: "You are already registered, check your email for new verification code"
         })
       }
 
       if (user) {
         return res
-          .status(400)
+          .status(200)
           .json({
-            success: false,
             msg: 'User already exists'
           });
       }
@@ -74,8 +73,8 @@ router.post('/api/user/register', [
 
       await user.save();
 
-      res.json({
-        success: true,
+      res.status(201).json({
+        email,
         msg: 'Please check your email and verify your account'
       })
     } catch (err) {

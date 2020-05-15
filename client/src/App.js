@@ -2,9 +2,11 @@ import React from 'react'
 import {
   Switch,
   Route,
-  Redirect,
-  withRouter
 } from "react-router-dom";
+
+// react toastify
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer} from 'react-toastify'
 
 // app css
 import './App.css'
@@ -22,12 +24,14 @@ import Register from './screens/register/Register';
 import advertise from './screens/single ads/advertise';
 import SellForm from './screens/sell form/SellForm';
 import ScrollTop from './utils/ScrollTop';
+import Verify from './screens/verify user/Verify';
 
 const App = () => {
   return (
     <div>
       <ScrollTop />
       <Navmenu />
+      <ToastContainer />
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/profile" component={Profile} />
@@ -36,6 +40,7 @@ const App = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/singleads" component={advertise} />
         <Route exact path="/sell" component={SellForm} />
+        <Route exact path="/verify" component={Verify} />
       </Switch>
     </div>
   )
