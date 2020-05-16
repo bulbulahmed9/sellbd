@@ -11,7 +11,8 @@ const initialState = {
     token: localStorage.getItem('token'),
     isAuth: false,
     loading: false,
-    res: null,
+    registerRes: null,
+    verifyRes: null,
     errors: null
 }
 
@@ -26,16 +27,15 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                res: action.payload
+                registerRes: action.payload
             }
         case register_failed:
-        case verify_failed:
             return {
                 ...state,
                 token: null,
                 isAuth: false,
                 loading: false,
-                res: null,
+                registerRes: null,
                 errors: action.payload
             }
         case verify_success:
@@ -43,7 +43,16 @@ export default function (state = initialState, action) {
                 ...state,
                 isAuth: true,
                 loading: false,
-                res: action.payload
+                verifyRes: action.payload
+            }
+        case verify_failed:
+            return {
+                ...state,
+                token: null,
+                isAuth: false,
+                loading: false,
+                verifyRes: null,
+                errors: action.payload
             }
         default:
             return state

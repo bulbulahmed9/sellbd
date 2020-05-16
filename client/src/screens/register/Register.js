@@ -148,7 +148,7 @@ Register.propTypes = {
 
 const mapStateToProps = state => ({
   authLoading: state.authReducer.loading,
-  res: state.authReducer.res
+  res: state.authReducer.registerRes
 })
 
 export default connect(mapStateToProps, { register })(Register);

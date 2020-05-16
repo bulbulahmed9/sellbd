@@ -1,0 +1,98 @@
+/* input [type=number] arrows hide */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* input [type=number] arrows hide */
+/* Firefox */
+input[type="password"] {
+  -moz-appearance: textfield;
+}
+
+.verify-form {
+  /* background: url("./img/verify-bg.jpeg"); */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  overflow: hidden;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  position: relative;
+}
+.verify-form .verify-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    rgba(28, 55, 67, 1),
+    rgba(162, 163, 163, 0.01)
+  );
+}
+.verify-form .verify-left {
+  position: relative;
+  height: 100vh;
+}
+.verify-form .verify-left .email,
+.verify-form .verify-left .fb {
+  background: var(--gmail);
+  border: none;
+  outline: none;
+  margin: 5px 0;
+  padding: 5px 0;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 30px;
+  margin-left: 50px;
+  width: 200px;
+  text-decoration: none;
+}
+.verify-form .verify-left .fb {
+  background: var(--fb);
+  margin-bottom: 0px;
+}
+.verify-form .verify-left .verify-left-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: column;
+}
+.verify-form .verify-left input[type="email"],
+.verify-form input[type="number"],
+.verify-form .verify-btn {
+  background: var(--white);
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 300px;
+  padding-left: 20px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+}
+.verify-form .verify-left .error {
+  color: var(--red);
+  padding-left: 20px;
+}
+.verify-form .verify-btn {
+  padding-left: 0px;
+  background: var(--footer-bg);
+  color: var(--white);
+  margin-top: 20px;
+}
+.verify-btn:focus {
+  outline: none;
+}
+.verify-title {
+  color: var(--white);
+  margin-left: 62px;
+}
+.verify-title svg {
+  margin-top: -3px;
+  margin-left: 2px;
+}

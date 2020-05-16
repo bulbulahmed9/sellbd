@@ -41,6 +41,7 @@ router.post('/api/user/register', [
         await user.save()
         sendEmail(code, toEmail);
         return res.status(201).json({
+          email: user.email,
           msg: "You are already registered, check your email for new verification code"
         })
       }
@@ -91,13 +92,13 @@ router.put('/api/user/verify', async (req, res) => {
   try {
     const { email, code } = req.body;
     if (!email) {
-      return res.status(400).json({
+      return res.status(200).json({
         success: false,
         msg: "Please provide your email"
       })
     }
     if (!code) {
-      return res.status(400).json({
+      return res.status(200).json({
         success: false,
         msg: "Please provide a code"
       })
@@ -109,7 +110,6 @@ router.put('/api/user/verify', async (req, res) => {
         success: false,
         msg: 'User not found'
       })
-      console.log("not found")
     }
     if (user.isVerified) {
       return res.json({ msg: "You are already verified" })
@@ -118,9 +118,7 @@ router.put('/api/user/verify', async (req, res) => {
 
 
     if (!isMatch) {
-      return res
-        .status(400)
-        .json({
+      return res.json({
           success: false,
           msg: 'Invalid Code'
         });
@@ -128,7 +126,7 @@ router.put('/api/user/verify', async (req, res) => {
     user.isVerified = true;
 
     await user.save()
-    res.json({
+    res.status(201).json({
       success: true,
       msg: "Verification Successful. Please log in"
     })

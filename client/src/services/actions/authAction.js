@@ -1,13 +1,15 @@
 import {
     register_success,
     register_failed,
-    loader
+    loader,
+    verify_success,
+    verify_failed
 } from '../types'
 
 import { toast } from 'react-toastify';
 
 // API url
-import { registerURL } from '../../API/api'
+import { registerURL, verifyURL } from '../../API/api'
 
 // axios
 import axios from 'axios'
@@ -50,3 +52,37 @@ export const register = ({ name, email, password }, history) => async dispatch =
 }
 
 // verify user 
+export const verify = ({ email, code }, history) => async dispatch => {
+    let config = {
+        headers: {
+            "Content-Type": "application/json" 
+        }
+    }
+    let body = JSON.stringify({ email, code })
+
+    try {
+        dispatch({
+            type: loader
+        })
+        const res = await axios.put(verifyURL, body, config)
+
+        dispatch({
+            type: verify_success,
+            payload: res,
+        });
+        toast(res.data.msg)
+        if(res.status === 201){
+            history.push('/login')
+        }
+
+
+    } catch (err) {
+        if (err) {
+            dispatch({
+                type: verify_failed,
+                payload: err
+            })
+            toast("Something went wrong")
+        }
+    }
+}
