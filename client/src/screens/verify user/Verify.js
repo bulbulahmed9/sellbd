@@ -8,13 +8,17 @@ import MiniLoader from "../../components/MiniLoader";
 
 import PropTypes from 'prop-types'
 
-const Verify = ({ userInfo, history, loader, verify }) => {
+const Verify = ({ userInfo, history, loader, verify, isAuth }) => {
 
     useEffect(() => {
-        if(userInfo === null){
+      let email = userInfo ? userInfo.email : null
+        if(userInfo == null && email == null){
             history.push('/register')
         }
-    },[userInfo, history])
+        if(isAuth === true){
+          history.push('/profile')
+        }
+    },[userInfo, history, isAuth])
 
   return (
     <>
@@ -32,7 +36,7 @@ const Verify = ({ userInfo, history, loader, verify }) => {
         }}
         onSubmit={(values, { setSubmitting }) => {
             const { code } = values
-            const email = userInfo.data.email
+            const email = userInfo.email
             verify({ email ,code }, history)
             setSubmitting(false);
         }}
@@ -90,12 +94,14 @@ const Verify = ({ userInfo, history, loader, verify }) => {
 Verify.propTypes = {
     userInfo: PropTypes.object,
     loader: PropTypes.bool.isRequired,
-    verify: PropTypes.func.isRequired
+    verify: PropTypes.func.isRequired,
+    isAuth: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
-    userInfo:  state.authReducer.registerRes,
-    loader: state.authReducer.loading
+    userInfo:  state.auth.registerRes,
+    loader: state.auth.loading,
+    isAuth: state.auth.isAuth
 })
 
 export default connect(mapStateToProps, {verify})(Verify);

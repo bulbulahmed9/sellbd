@@ -1,5 +1,7 @@
 export const loader = 'loader'
+export const stop_loader = 'stop_loader'
 export const register_success = 'register_success'
 export const register_failed = 'register_failed'
 export const verify_success = 'verify_success'
 export const verify_failed = 'verify_failed'
+export const logout = 'logout'

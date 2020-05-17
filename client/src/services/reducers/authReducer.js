@@ -2,8 +2,10 @@ import {
     register_success,
     register_failed,
     loader,
+    stop_loader,
     verify_success,
-    verify_failed
+    verify_failed,
+    logout
 } from '../types'
 
 // initial state
@@ -22,6 +24,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: true,
+            }
+        case stop_loader:
+            return {
+                ...state,
+                loading: false,
             }
         case register_success:
             return {
@@ -43,7 +50,7 @@ export default function (state = initialState, action) {
                 ...state,
                 isAuth: true,
                 loading: false,
-                verifyRes: action.payload
+                verifyRes: action.payload,
             }
         case verify_failed:
             return {
@@ -53,6 +60,15 @@ export default function (state = initialState, action) {
                 loading: false,
                 verifyRes: null,
                 errors: action.payload
+            }
+        case logout:
+            return {
+                token: null,
+                isAuth: false,
+                loading: false,
+                registerRes: null,
+                verifyRes: null,
+                errors: null
             }
         default:
             return state

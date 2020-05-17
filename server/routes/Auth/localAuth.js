@@ -31,7 +31,7 @@ router.post('/api/user/register', [
     try {
       let user = await User.findOne({ email });
 
-      
+
       if (user && user.isVerified === false) {
         const code = Math.floor(100000 + Math.random() * 900000)
         const toEmail = email
@@ -119,16 +119,25 @@ router.put('/api/user/verify', async (req, res) => {
 
     if (!isMatch) {
       return res.json({
-          success: false,
-          msg: 'Invalid Code'
-        });
+        success: false,
+        msg: 'Invalid Code'
+      });
     }
     user.isVerified = true;
 
     await user.save()
+    const payload = {
+      user: {
+        id: user.id
+      }
+    };
+    const token = jwt.sign({
+      payload
+    }, process.env.jwtSecret, { expiresIn: '7d' });
     res.status(201).json({
+      token,
       success: true,
-      msg: "Verification Successful. Please log in"
+      msg: "Verification Successful"
     })
   } catch (err) {
     console.log(err.message)

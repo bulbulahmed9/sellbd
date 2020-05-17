@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
@@ -9,7 +9,13 @@ import "./register.css";
 import { register } from '../../services/actions/authAction'
 import MiniLoader from "../../components/MiniLoader";
 
-const Register = ({ register, authLoading, history }) => {
+const Register = ({ register, authLoading, history, isAuth }) => {
+
+  useEffect(() => {
+    if (isAuth === true) {
+      history.push('/profile')
+    }
+  }, [isAuth])
 
   return (
     <>
@@ -143,12 +149,14 @@ const Register = ({ register, authLoading, history }) => {
 Register.propTypes = {
   register: PropTypes.func.isRequired,
   authLoading: PropTypes.bool.isRequired,
-  res: PropTypes.object
+  res: PropTypes.object,
+  isAuth: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
-  authLoading: state.authReducer.loading,
-  res: state.authReducer.registerRes
+  authLoading: state.auth.loading,
+  res: state.auth.registerRes,
+  isAuth: state.auth.isAuth
 })
 
 export default connect(mapStateToProps, { register })(Register);
