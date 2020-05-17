@@ -160,26 +160,27 @@ router.post('/api/user/login',
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.json({ errors: errors.array() });
     }
     try {
       let { email, password } = req.body
-      console.log(email, password)
       let user = await User.findOne({ email })
       if (!user) {
-        return res.send('User not exists')
+        return res.json({
+          msg: "User not exists"
+        })
       }
       if (!user.isVerified) {
         return res.json({
           success: false,
-          msg: 'User not verified'
+          msg: 'You are not verified user'
         })
       }
       const isMatchPasswod = await bcrypt.compare(password, user.password)
       if (!isMatchPasswod) {
         return res.json({
           success: false,
-          msg: "Password doesn't match"
+          msg: "Invalid Credentials"
         })
       }
       const payload = {
@@ -190,9 +191,9 @@ router.post('/api/user/login',
       const token = jwt.sign({
         payload
       }, process.env.jwtSecret, { expiresIn: '7d' });
-      res.json({
+      res.status(201).json({
         token,
-        msg: 'Login success'
+        msg: 'You are logged in'
       });
     } catch (err) {
       console.log(err.message);

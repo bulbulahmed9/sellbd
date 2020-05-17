@@ -4,8 +4,8 @@ const User = require('../model/userModel')
 // get user profile
 const getProfile = async (req, res, next) => {
     try {
-      const {id} = req.user.id
-      const user = await User.findById({ _id: id }).select('-password').select('-verificationCode')
+      const {id} = req.user
+      const user = await User.findById(id).select('-password').select('-verificationCode')
       res.json(user)
     } catch (err) {
       console.log(err.message)

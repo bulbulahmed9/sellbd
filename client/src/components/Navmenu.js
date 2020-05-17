@@ -7,13 +7,6 @@ import './navmenu.css'
 
 const Navmenu = ({ isAuth, logoutUser }) => {
 
-    // const handleLogout = () => {
-    //     logout()
-    //     Redirect('/')
-    // }
-
-
-
     const navbarWithoutLogin = <Nav className="ml-auto">
         <NavLink className="nav-link mx-2" to="/allads">All Ads</NavLink>
         <NavLink className="nav-link mx-2" to="/login">Login</NavLink>

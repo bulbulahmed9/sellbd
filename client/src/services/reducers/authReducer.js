@@ -5,6 +5,10 @@ import {
     stop_loader,
     verify_success,
     verify_failed,
+    login_success,
+    login_failed,
+    loaduser_success,
+    loaduser_failed,
     logout
 } from '../types'
 
@@ -15,7 +19,8 @@ const initialState = {
     loading: false,
     registerRes: null,
     verifyRes: null,
-    errors: null
+    profile: null,
+    loginRes: null,
 }
 
 export default function (state = initialState, action) {
@@ -43,7 +48,6 @@ export default function (state = initialState, action) {
                 isAuth: false,
                 loading: false,
                 registerRes: null,
-                errors: action.payload
             }
         case verify_success:
             return {
@@ -51,7 +55,7 @@ export default function (state = initialState, action) {
                 isAuth: true,
                 loading: false,
                 verifyRes: action.payload,
-            }
+            }    
         case verify_failed:
             return {
                 ...state,
@@ -59,7 +63,31 @@ export default function (state = initialState, action) {
                 isAuth: false,
                 loading: false,
                 verifyRes: null,
-                errors: action.payload
+            }
+        case login_success:
+            return {
+                ...state,
+                isAuth: true,
+                loading: false,
+                loginRes: action.payload
+            }
+        case login_failed:
+            return {
+                ...state,
+                isAuth: false,
+                loading: false,
+            }
+        case loaduser_success: 
+            return {
+                ...state,
+                loading: false,
+                profile: action.payload
+            }
+        case loaduser_failed:
+            return {
+                ...state,
+                loading: false,
+                profile: null
             }
         case logout:
             return {
@@ -68,7 +96,6 @@ export default function (state = initialState, action) {
                 loading: false,
                 registerRes: null,
                 verifyRes: null,
-                errors: null
             }
         default:
             return state

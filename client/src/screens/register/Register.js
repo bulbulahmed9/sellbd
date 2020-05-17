@@ -15,7 +15,7 @@ const Register = ({ register, authLoading, history, isAuth }) => {
     if (isAuth === true) {
       history.push('/profile')
     }
-  }, [isAuth])
+  }, [isAuth, history])
 
   return (
     <>
