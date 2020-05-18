@@ -9,7 +9,9 @@ import {
     login_failed,
     loaduser_success,
     loaduser_failed,
-    logout
+    logout,
+    loginOAuth_failed,
+    loginOAuth_success
 } from '../types'
 
 import { toast } from 'react-toastify';
@@ -156,6 +158,22 @@ export const login = ({ email, password }, history) => async dispatch => {
                 payload: err
             })
             toast("Something went wrong")
+        }
+    }
+}
+
+// login with Oauth
+export const loginOAuth = (token) => async dispatch => {
+    try {
+        dispatch({
+            type: loginOAuth_success
+        })
+        dispatch(loadUser())
+    } catch (err) {
+        if (err) {
+            dispatch({
+                type: loginOAuth_failed,
+            })
         }
     }
 }

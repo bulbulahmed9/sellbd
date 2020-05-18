@@ -9,12 +9,13 @@ import {
     login_failed,
     loaduser_success,
     loaduser_failed,
+    loginOAuth_success,
+    loginOAuth_failed,
     logout
 } from '../types'
 
 // initial state
 const initialState = {
-    token: localStorage.getItem('token'),
     isAuth: false,
     loading: false,
     registerRes: null,
@@ -44,7 +45,6 @@ export default function (state = initialState, action) {
         case register_failed:
             return {
                 ...state,
-                token: null,
                 isAuth: false,
                 loading: false,
                 registerRes: null,
@@ -55,11 +55,10 @@ export default function (state = initialState, action) {
                 isAuth: true,
                 loading: false,
                 verifyRes: action.payload,
-            }    
+            }
         case verify_failed:
             return {
                 ...state,
-                token: null,
                 isAuth: false,
                 loading: false,
                 verifyRes: null,
@@ -77,7 +76,19 @@ export default function (state = initialState, action) {
                 isAuth: false,
                 loading: false,
             }
-        case loaduser_success: 
+        case loginOAuth_success:
+            return {
+                ...state,
+                isAuth: true,
+                loading: false
+            }
+        case loginOAuth_failed:
+            return {
+                ...state,
+                isAuth: false,
+                loading: false
+            }
+        case loaduser_success:
             return {
                 ...state,
                 loading: false,
@@ -91,7 +102,6 @@ export default function (state = initialState, action) {
             }
         case logout:
             return {
-                token: null,
                 isAuth: false,
                 loading: false,
                 registerRes: null,

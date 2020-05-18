@@ -1,13 +1,13 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {login} from '../../services/actions/authAction'
+import { login } from '../../services/actions/authAction'
 import "./login.css";
-import MiniLoader from "../../components/MiniLoader";
+import MiniLoader from "../../components/loading/MiniLoader";
 
-const Login = ({login, history, isAuth, authLoading}) => {
+const Login = ({ login, history, isAuth, authLoading }) => {
 
   useEffect(() => {
     if (isAuth === true) {
@@ -40,8 +40,8 @@ const Login = ({login, history, isAuth, authLoading}) => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          const {email, password} = values
-          login({email, password}, history)
+          const { email, password } = values
+          login({ email, password }, history)
           setSubmitting(false);
         }}
       >
@@ -91,9 +91,9 @@ const Login = ({login, history, isAuth, authLoading}) => {
                             )}
                           </div>
                           <button type="submit" className="login-btn">
-                            Log in {authLoading && <MiniLoader /> }
-                        </button>
-                        <p className="ml-5" style={{color: "#ffffff"}}>Not a member? <Link style={{color: "#ffffff"}} to="/register">Register here</Link></p>
+                            Log in {authLoading && <MiniLoader />}
+                          </button>
+                          <p className="ml-5" style={{ color: "#ffffff" }}>Not a member? <Link style={{ color: "#ffffff" }} to="/register">Register here</Link></p>
                         </div>
                       </div>
                     </div>
@@ -119,4 +119,4 @@ const mapStateToProps = state => ({
   isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, {login})(Login);
+export default connect(mapStateToProps, { login })(Login);

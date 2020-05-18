@@ -2,7 +2,7 @@ import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { NavLink, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {logoutUser} from '../services/actions/authAction'
+import {logoutUser} from '../../services/actions/authAction'
 import './navmenu.css'
 
 const Navmenu = ({ isAuth, logoutUser }) => {

@@ -20,6 +20,6 @@ module.exports = app => {
     }, process.env.jwtSecret, { expiresIn: '7d' });
     res.clearCookie('mycookie')
     res.cookie('mycookie', token)
-    res.send('login success');
+    res.redirect(`${process.env.clientURL}`)
   })
 }

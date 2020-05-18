@@ -7,7 +7,7 @@ import "./register.css";
 
 
 import { register } from '../../services/actions/authAction'
-import MiniLoader from "../../components/MiniLoader";
+import MiniLoader from "../../components/loading/MiniLoader";
 
 const Register = ({ register, authLoading, history, isAuth }) => {
 

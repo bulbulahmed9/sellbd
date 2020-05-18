@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
 import "./verify.css";
 import {verify} from '../../services/actions/authAction'
-import MiniLoader from "../../components/MiniLoader";
+import MiniLoader from "../../components/loading/MiniLoader";
 
 import PropTypes from 'prop-types'
 
