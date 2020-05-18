@@ -149,7 +149,7 @@ export const login = ({ email, password }, history) => async dispatch => {
             })
             localStorage.setItem('token', res.data.token)
             history.push('/profile')
-            dispatch(loadUser());
+            // dispatch(loadUser());
         }
     } catch (err) {
         if (err) {
@@ -168,7 +168,7 @@ export const loginOAuth = (token) => async dispatch => {
         dispatch({
             type: loginOAuth_success
         })
-        dispatch(loadUser())
+        // dispatch(loadUser())
     } catch (err) {
         if (err) {
             dispatch({
