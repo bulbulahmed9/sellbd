@@ -3,9 +3,12 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MiniLoader from '../../components/loading/MiniLoader'
 import "./sellForm.css";
 import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+
 import {postAd} from '../../services/actions/advertiseAction'
 
 // static data for input field suggestion
@@ -36,7 +39,7 @@ registerPlugin(
   FilePondPluginImageCrop
 );
 
-const SellForm = ({ history, postAd }) => {
+const SellForm = ({ history, postAd, loading }) => {
   // filepond image
   const [files, setFiles] = useState([]);
 
@@ -85,10 +88,7 @@ const SellForm = ({ history, postAd }) => {
     } else if (files.length === 1) {
       addTwoImgNotify();
     } else {
-      console.log(data);
       data.files = files;
-    //   successNotify();
-    //   history.push("/");
     postAd(data, history)
     }
   };
@@ -100,12 +100,12 @@ const SellForm = ({ history, postAd }) => {
           <Col>
             <form className="post-ad-form" onSubmit={handleSubmit(onSubmit)}>
               <h3 className="heading">Post your advertise</h3>
-              <div className="city mb-3">
+              <div className="division mb-3">
                 <h6>Division</h6>
-                {errors.city && <p className="error">Division is required</p>}
+                {errors.division && <p className="error">Division is required</p>}
                 <input
                   autoComplete="off"
-                  name="city"
+                  name="division"
                   list="cities"
                   type="text"
                   onChange={e => setArea(e)}
@@ -224,7 +224,7 @@ const SellForm = ({ history, postAd }) => {
                         <option value="false">No</option>
                     </select>
               </div>
-              <button type="submit">Submit</button>
+              <button type="submit"> {  loading ? <span> Submitting... <MiniLoader /> </span> : "Submit" }  </button>
             </form>
           </Col>
         </Row>
@@ -233,5 +233,14 @@ const SellForm = ({ history, postAd }) => {
   );
 };
 
-export default connect(null, {postAd})(withRouter(SellForm));
+SellForm.prototypes = {
+  postAd: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+}
+
+const mapStateToProps = state => ({
+  loading: state.ad.loading
+})
+
+export default connect(mapStateToProps, {postAd})(withRouter(SellForm));
 

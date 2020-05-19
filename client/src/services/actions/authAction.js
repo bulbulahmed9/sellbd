@@ -28,7 +28,7 @@ import axios from 'axios'
 export const loadUser = () => async dispatch => {
     if (localStorage.token) {
         setAuthToken(localStorage.token)
-    }
+      }
     try {
         dispatch({
             type: loader

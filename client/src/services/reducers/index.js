@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import authReducer from './authReducer'
 import profileReducer from './profileReducer'
+import advertiseReducer from './advertiseReducer'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -12,7 +13,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    profileReducer
+    profileReducer,
+    ad: advertiseReducer,
 })
 
 export default persistReducer(persistConfig, rootReducer)

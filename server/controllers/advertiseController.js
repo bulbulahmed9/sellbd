@@ -20,6 +20,13 @@ const postAd = async (req, res) => {
         if (req.method === 'POST') {
             const urls = []
             const files = req.files;
+            console.log(`file is ${files}`)
+            if(!files){
+              return  res.json({
+                    msg: "Please provide images"
+                })
+            }
+            
             for (const file of files) {
                 const { path } = file;
                 const newPath = await uploader(path)
