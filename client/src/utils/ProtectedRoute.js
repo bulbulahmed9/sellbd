@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Redirect, Route } from 'react-router-dom'
+import { toast } from 'react-toastify'
 // rafcp
 
 const ProtectedRoute = ({
@@ -10,7 +11,9 @@ const ProtectedRoute = ({
     ...rest
 }) => {
     return (
-        <Route {...rest} render={(props) => isAuth ? (<Component {...props} />) : (<Redirect to="/login" />)} />
+        <Route {...rest} render={(props) => isAuth ? (<Component {...props} />) : (
+        toast("Please log in"),
+        <Redirect to="/login" />)} />
     )
 }
 

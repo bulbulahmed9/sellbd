@@ -63,7 +63,7 @@ input[type="password"] {
   justify-content: center;
   flex-direction: column;
 }
-.register-form .register-left input[type="email"], input[type="text"],
+.register-form .register-left input[type="email"],.register-form .register-left input[type="text"],
 .register-form input[type="password"],
 .register-form .register-btn {
   background: var(--white);

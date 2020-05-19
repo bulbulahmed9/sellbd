@@ -1,0 +1,61 @@
+
+
+
+.post-ad-form {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  margin: 40px 0;
+  padding: 30px 40px;}
+  .post-ad-form .heading{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.post-ad-form input, textarea, select{
+  border-radius: 5px;
+  border: 2px solid #e7edee;
+  transition: all .3s ease-in-out;
+}
+.post-ad-form .error{
+  color: #ff0000;
+}
+.post-ad-form input:focus,textarea:focus, select:focus{
+  outline: none;
+  border: 2px solid #16a085;
+}
+.post-ad-form textarea {
+  width: 450px;
+  height: 200px;
+}
+.post-ad-form button{
+  border-radius: 6px;
+  padding: 5px 15px;
+  font-weight: 600;
+  background: #16a085;
+  color: #ffffff;
+  border: none;
+  }
+  .post-ad-form button:focus{
+  outline: none;
+}
+
+ /* .filepond--wrapper{
+ width: 350px;
+ }
+ .filepond--drop-label{
+   width: 350px;
+ } */
+ .post-ad-form .filepond--label-action{
+  border: 2px solid #16a085;
+  padding: 5px 12px;
+  border-radius: 5px;
+}
+
+.post-ad-form .filepond--item {
+  width: calc(33.33% - .5em);
+}
+
+@media(max-width: 576px){
+  .post-ad-form textarea {
+    width: 350px;
+    height: 200px;
+  }
+}

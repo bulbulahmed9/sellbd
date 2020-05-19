@@ -10,9 +10,11 @@ import { updatePhone } from '../../services/actions/profileAction'
 
 const Profile = ({ profile, loadUser, updatePhone, loading }) => {
 
+
+
     useEffect(() => {
         loadUser()
-    }, [loadUser, profile])
+    }, [loadUser, loading])
 
     let name = profile && profile.name
     let email = profile ? profile.email || profile.googleEmail || profile.facebookEmail : null
@@ -43,7 +45,7 @@ const Profile = ({ profile, loadUser, updatePhone, loading }) => {
                 <div className="card-body">
                     <h4 className="my-3">Welcome {name} </h4>
                     {email !== null && <h6>Email : {email} </h6>}
-                    {profile.phone === undefined ? "" : <h6> Phone: {profile.phone} </h6>}
+                    {profile.phone === undefined ? "" : <h6> Phone: {`0${profile.phone}`} </h6>}
 
                     <button onClick={() => toggleOpenBox()} className="btn btn-info mt-3">  {profile.phone === undefined ? "Add Phone Number" : "Update Phone Number"}  {loading && <MiniLoader />} </button> <br />
                     {openBox && <div>
