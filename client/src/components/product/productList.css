@@ -1,0 +1,115 @@
+.product-list {
+    padding: 50px 0;
+  }
+  .product-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .product-list-header .search {
+    width: 290px;
+    position: relative;
+  }
+  .product-list-header .search .search-icon {
+    position: absolute;
+    top: 4px;
+    left: 95px;
+    transition: 0.8s;
+  }
+  .product-list-header .search .search-icon svg {
+    transform: rotate(86deg);
+  }
+  .product-list-header .search input[type="search"] {
+    width: 100%;
+    padding: 3px 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding-left: 118px;
+    transition: 0.8s;
+  }
+  .product-list-header .search input[type="search"]:focus {
+    padding-left: 25px;
+    outline: none;
+  }
+  .product-list-header .search input[type="search"]:focus + .search-icon {
+    position: absolute;
+    top: 6px;
+    left: 5px;
+  }
+  .product-list .button {
+    text-align: left;
+  }
+  .product-list .button a,
+  a:hover {
+    text-decoration: none;
+  }
+  .product-list .button a {
+    font-family: "Roboto", sans-serif;
+    padding-right: 20px;
+    color: #000;
+  }
+  .product-list .button a:last-child {
+    padding-right: 0px;
+  }
+  .product-list .discover-button {
+    text-align: center;
+  }
+
+
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.filter{
+    padding: 60px 0;
+}
+.filter h3{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.filter .area, .filter .brand{
+    margin-bottom: 30px;
+}
+.filter .division, .filter .city{
+    position: relative;
+}
+.filter .division .icon, .filter .city .icon{
+    position: absolute;
+    top: 6px;
+    right: 15px;
+}
+/* .filter .division .icon svg, .filter .city .icon i{
+    padding: 12px 0;
+} */
+.filter input[type=text], select{
+    height: 35px;
+    padding-left: 8px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+.filter input[type=text]:focus{
+    outline: none;
+}
+
+
+.filter .category select{
+    border: 1px solid gray;
+    border-radius: 0;
+    cursor: pointer;
+}
+.filter .price{
+    margin-top: 15px;
+}
+.filter .price .price-range button{
+    width: 100%;
+    border: none;
+    text-align: left;
+    margin-bottom: 20px;
+    color: gray;
+    padding-bottom: 5px;
+    border-bottom: 1px solid gray;
+    background: transparent;
+    outline: none;
+}

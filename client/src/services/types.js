@@ -25,3 +25,7 @@ export const phone_update_loader = 'phone_update_loader'
 export const postAd_success = 'postAd_success'
 export const postAd_failed = 'postAd_failed'
 export const postAd_loading = 'postAd_loading'
+
+export const getAd_success = 'getAd_success'
+export const getAd_failed = 'getAd_failed'
+export const getAd_loading = 'getAd_loading'

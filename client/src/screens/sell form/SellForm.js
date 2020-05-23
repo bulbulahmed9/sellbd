@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 import {postAd} from '../../services/actions/advertiseAction'
 
 // static data for input field suggestion
-import { cityList, areas, category } from "../../shared/staticData/data";
+import { cityList, areas, categoryData } from "../../shared/staticData/data";
 
 // file pond
 import { FilePond, registerPlugin } from "react-filepond";
@@ -160,7 +160,7 @@ const SellForm = ({ history, postAd, loading }) => {
                 <h6>Category</h6>
                 {errors.category && <p className="error">Select Category</p>}
                 <select name="category" ref={register({required: true})}>
-                    { category.map((item, index) => {
+                    { categoryData.map((item, index) => {
                         return <option key={index} value={item}> {item} </option>
                     }) }
                 </select>

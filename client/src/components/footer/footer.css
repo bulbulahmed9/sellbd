@@ -1,0 +1,90 @@
+
+.footer{
+    margin-top: 50px;
+  }
+  
+  .footer .content {
+      background: #3a3e64;
+      padding: 70px 0 87px;
+  }
+  
+  .footer .content h3 {
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #fff;
+      padding-bottom: 10px;
+  }
+  
+  .footer .content p {
+      font-family: "Oswald", sans-serif;
+      font-size: 14px;
+      color: #fff;
+      line-height: 24px;
+  }
+  
+  .footer .content .icon a {
+      height: 40px;
+      width: 40px;
+      display: inline-block;
+      border: 2px solid #fff;
+      position: relative;
+      -webkit-transition: .3s all ease-in-out;
+      -o-transition: .3s all ease-in-out;
+    transition: .3s all ease-in-out;
+    margin: 3px;
+  }
+  
+  .footer .content .icon a:hover {
+      -webkit-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+              transform: rotate(360deg);
+  }
+  
+  .footer .content .icon i {
+      color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+      -webkit-transition: .3s all ease-in-out;
+      -o-transition: .3s all ease-in-out;
+      transition: .3s all ease-in-out;
+  }
+  
+  .footer .content a:hover i {
+      color: #000;
+  }
+  
+  .footer .f-bottom {
+      padding: 30px 0;
+      background: #313454;
+  }
+  
+  .footer .f-bottom h4 {
+      color: #808080;
+      font-size: 14px;
+      padding-bottom: 10px;
+  }
+  
+  .footer .f-bottom p {
+      color: #808080;
+      font-size: 14px;
+      padding-bottom: 10px;
+  }
+  
+  .footer .f-bottom i {
+      color: #e84545;
+  }
+  
+  .footer .f-bottom span {
+      color: #fff;
+  }
+  
+  .footer .f-bottom .author{
+    font-family: "Permanent Marker", cursive;
+    font-size: 16px;
+  }

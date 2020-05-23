@@ -33,7 +33,7 @@ const postAd = async (req, res) => {
                 urls.push(newPath)
                 fs.unlinkSync(path)
             }
-            // for(let i=0; i <= 50; i++){
+            for(let i=0; i <= 50; i++){
                 console.log(req.user.id)
             const advertise = new Advertise({
                 user: req.user.id,
@@ -48,7 +48,7 @@ const postAd = async (req, res) => {
                 isNegotiable: isNegotiable
             })
             await advertise.save();
-            // }
+            }
 
             res.status(201).json({
                 msg: 'Posted advertise successfully',
@@ -90,7 +90,7 @@ const getAllAds = async (req, res) => {
         const ads = await Advertise.find(filterData).limit(limit * 1).skip((page - 1) * limit)
         const count = await Advertise.countDocuments()
 
-        res.json({
+        res.status(200).json({
             ads,
             totalPages: Math.ceil(count / limit),
             currentPage: page

@@ -10,11 +10,11 @@ const upload = require('../utils/multer')
 router.post('/api/postad', auth, upload.array('image'), postAd)
 
 
-// @ route get: /api/ads
+// @ route post: /api/ads
 // @ desc get all advertise depends on pagination, filtering, search
 // @ access public
 
-router.get('/api/ads', getAllAds)
+router.post('/api/ads', getAllAds)
 
 // @ route get: /api/ads/:id
 // @ desc get single ad by id

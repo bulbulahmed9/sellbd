@@ -29,6 +29,7 @@ import SellForm from './screens/sell form/SellForm';
 import ScrollTop from './utils/ScrollTop';
 import Verify from './screens/verify user/Verify';
 import ProtectedRoute from './utils/ProtectedRoute';
+import Footer from './components/footer/Footer';
 
 const App = ({ loginOAuth }) => {
 
@@ -57,6 +58,7 @@ const App = ({ loginOAuth }) => {
         <ProtectedRoute exact path="/sell" component={SellForm} />
         <Route exact path="/verify" component={Verify} />
       </Switch>
+      <Footer />
     </div>
   )
 }

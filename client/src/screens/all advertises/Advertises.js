@@ -1,11 +1,20 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
+import ProductList from '../../components/product/ProductList'
 
-const Advertises = () => {
+import {getAd} from '../../services/actions/advertiseAction'
+import {connect} from 'react-redux'
+
+const Advertises = ({ getAd }) => {
+
+    // useEffect(() => {
+    //     getAd()
+    // },[getAd])
+
     return (
         <div>
-            all ads
+            <ProductList />
         </div>
     )
 }
 
-export default Advertises
+export default connect(null, {getAd})(Advertises)

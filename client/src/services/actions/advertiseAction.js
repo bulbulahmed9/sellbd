@@ -1,7 +1,7 @@
-import { postAd_success, postAd_failed, postAd_loading } from '../types'
+import { postAd_success, postAd_failed, postAd_loading, getAd_success, getAd_failed, getAd_loading } from '../types'
 import { toast } from 'react-toastify'
 import Axios from 'axios'
-import { postAdURL } from '../../API/api'
+import { postAdURL, adsURL } from '../../API/api'
 import { setAuthToken } from '../../utils/setAuthToken'
 import FormData from 'form-data'
 
@@ -29,7 +29,7 @@ export const postAd = (data, history) => async dispatch => {
     form.append("description", description)
     form.append("price", price)
     form.append("isNegotiable", isNegotiable)
-    for(let i=0; i<files.length;i++){
+    for (let i = 0; i < files.length; i++) {
         form.append("image", files[i].file)
     }
 
@@ -52,5 +52,34 @@ export const postAd = (data, history) => async dispatch => {
             })
             toast("Something went wrong")
         }
+    }
+}
+
+// get advertises
+
+export const getAd = (obj) => async dispatch => {
+    let body = JSON.stringify(obj)
+    let config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+    try {
+        dispatch({
+            type: getAd_loading
+        })
+        const res = await Axios.post(adsURL, body, config)
+        console.log(res.data.ads)
+        if(res){
+            dispatch({
+                type: getAd_success,
+                payload: res.data.ads
+            })
+        }
+    } catch (err) {
+        dispatch({
+            type: getAd_failed
+        })
+        console.log(err)
     }
 }

@@ -151,4 +151,8 @@ export const cityList = [
     }
   ];
 
-  export const category = ["Electronics", "Mobiles", "Home and Living", "Vehicles", "Essentials", "Pets and animals", "Property", "Fashion, Health & Beauty", "Hobbies, Sports & Kids", "Business & Industry", "Education", "Services", "Foods", "Jobs"]
+  // category for post a advertise
+  export const categoryData = ["Electronics", "Mobile", "Home and Living", "Vehicles", "Essentials", "Pets and animals", "Property", "Fashion, Health & Beauty", "Hobbies, Sports & Kids", "Business & Industry", "Education", "Services", "Foods", "Jobs"]
+
+  // category for filter
+  export const categoryForFilter = ["All", "Electronics", "Mobile", "Home and Living", "Vehicles", "Essentials", "Pets and animals", "Property", "Fashion, Health & Beauty", "Hobbies, Sports & Kids", "Business & Industry", "Education", "Services", "Foods", "Jobs"]
