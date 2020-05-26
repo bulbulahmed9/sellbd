@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./productList.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import PropTypes from 'prop-types'
-
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { categoryForFilter } from '../../shared/staticData/data'
-
-
 import { getAd } from '../../services/actions/advertiseAction'
 import { connect } from 'react-redux'
 
@@ -13,7 +11,7 @@ import { connect } from 'react-redux'
 import Product from "./Product";
 import BigLoader from '../loading/BigLoader'
 
-const ProductList = ({ ads, getAdLoading, getAd }) => {
+const ProductList = ({ ads, getAdLoading, getAd, page }) => {
 
 
     const [data, setData] = useState({
@@ -23,25 +21,37 @@ const ProductList = ({ ads, getAdLoading, getAd }) => {
         price: "",
         searchKeyword: ""
     })
-
-    const handleChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value })
-    }
+    const [isFilter, setIsFilter] = useState(false)
 
     const { division, area, category, price, searchKeyword } = data
 
+    const handleChange = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
+        setIsFilter(true)
+        window.scroll(0, 0)
+    }
+
     let newCategory;
-    if(category === "All"){
+    if (category === "All") {
         newCategory = ""
-    } else{
+    } else {
         newCategory = category
     }
 
+    let filterData = {
+        division,
+        area,
+        category: newCategory,
+        price,
+        searchKeyword
+    }
+
     useEffect(() => {
-        getAd({ division, area, category: newCategory, price, searchKeyword })
-    }, [division, area, category, price, searchKeyword, getAd])
+        getAd(filterData, ads, isFilter, page)
+    }, [division, area, category, price, searchKeyword])
 
     return (
+
         <>
 
             <div className="container">
@@ -118,16 +128,24 @@ const ProductList = ({ ads, getAdLoading, getAd }) => {
                                         </div>
                                     </div>
                                 </div>
-                                {
-                                    getAdLoading ? <BigLoader /> :
-                                        <div className="row">
-                                            {ads.length > 0 ? ads.map((ad, index) => {
-                                                return <div key={index} className="col-md-3">
-                                                    <Product ad={ad} />
-                                                </div>
-                                            }) : <h3> No ads found </h3>}
-                                        </div>
-                                }
+                                <InfiniteScroll
+                                    dataLength={ads.length}
+                                    next={() => getAd(filterData, ads, false, page)}
+                                    hasMore={true}
+                                    loader={getAdLoading && <BigLoader />}
+                                >
+                                    {/* {
+                                    getAdLoading ? <BigLoader /> : */}
+                                    <div className="row">
+                                        {ads.length > 0 ? ads.map((ad, index) => {
+                                            return <div key={index} className="col-md-3">
+                                                <Product ad={ad} />
+                                            </div>
+                                        }) : <h3 style={{ textAlign: "center", width: "100%" }}> {getAdLoading === false && "No ads found"} </h3>}
+                                    </div>
+                                    {/* } */}
+                                </InfiniteScroll>
+
                             </div>
                         </div>
                     </div>
@@ -147,7 +165,8 @@ ProductList.prototypes = {
 
 const mapStateToProps = state => ({
     ads: state.ad.ads,
-    getAdLoading: state.ad.getAdLoading
+    getAdLoading: state.ad.getAdLoading,
+    page: state.ad.page
 })
 
 export default connect(mapStateToProps, { getAd })(ProductList);

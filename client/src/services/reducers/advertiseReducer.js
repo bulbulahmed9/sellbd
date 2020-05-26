@@ -3,7 +3,8 @@ import { postAd_success, postAd_failed, postAd_loading, getAd_success, getAd_fai
 const initialState = {
     loading: false,
     getAdLoading: false,
-    ads: []
+    ads: [],
+    page: 0
 }
 
 export default function (state = initialState, action) {
@@ -32,7 +33,8 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 getAdLoading: false,
-                ads: action.payload
+                ads: action.payload,
+                page: action.page
             }
         case getAd_failed:
             return {

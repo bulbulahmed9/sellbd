@@ -21,20 +21,20 @@ const postAd = async (req, res) => {
             const urls = []
             const files = req.files;
             console.log(`file is ${files}`)
-            if(!files){
-              return  res.json({
+            if (!files) {
+                return res.json({
                     msg: "Please provide images"
                 })
             }
-            
+
             for (const file of files) {
                 const { path } = file;
                 const newPath = await uploader(path)
                 urls.push(newPath)
                 fs.unlinkSync(path)
             }
-            for(let i=0; i <= 50; i++){
-                console.log(req.user.id)
+            // for(let i=0; i <= 50; i++){
+            console.log(req.user.id)
             const advertise = new Advertise({
                 user: req.user.id,
                 division: division,
@@ -48,7 +48,7 @@ const postAd = async (req, res) => {
                 isNegotiable: isNegotiable
             })
             await advertise.save();
-            }
+            // }
 
             res.status(201).json({
                 msg: 'Posted advertise successfully',

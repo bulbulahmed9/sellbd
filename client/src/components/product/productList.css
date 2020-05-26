@@ -64,6 +64,8 @@
 }
 .filter{
     padding: 60px 0;
+    position: sticky;
+    top: 0;
 }
 .filter h3{
     font-size: 18px;

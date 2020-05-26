@@ -57,7 +57,11 @@ export const postAd = (data, history) => async dispatch => {
 
 // get advertises
 
-export const getAd = (obj) => async dispatch => {
+export const getAd = (obj, ads, isFilter = false, page) => async dispatch => {
+    if (isFilter) {
+        ads.length = 0
+        page = 0
+    }
     let body = JSON.stringify(obj)
     let config = {
         headers: {
@@ -68,14 +72,18 @@ export const getAd = (obj) => async dispatch => {
         dispatch({
             type: getAd_loading
         })
-        const res = await Axios.post(adsURL, body, config)
-        console.log(res.data.ads)
-        if(res){
+        let limit = 30;
+        let newPage = page + 1;
+        const res = await Axios.post(`${adsURL}?page=${newPage}&limit=${limit}`, body, config)
+        if (res) {
+            let newData = ads.concat(res.data.ads)
             dispatch({
                 type: getAd_success,
-                payload: res.data.ads
+                payload: newData,
+                page: newPage
             })
         }
+
     } catch (err) {
         dispatch({
             type: getAd_failed

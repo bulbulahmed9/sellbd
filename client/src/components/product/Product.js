@@ -1,10 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-import demo from '../../shared/img/demo.svg'
 import './product.css'
 import { MdLocationOn } from "react-icons/md";
-import { adsURL } from '../../API/api';
 
 const Product = ({ ad }) => {
     return (
