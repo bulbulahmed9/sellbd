@@ -102,10 +102,9 @@ const Advertise = ({ match, getSingleAd, ad, loading, relatedAds }) => {
                             <Tab eventKey="Key Facts" title="Key Facts">
                                 <div className="tab-content">
                                     <div className="row">
-                                        <div className="col-md-4">
+                                        <div className="col-md-8">
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam ipsa mollitia accusamus, minus fuga id dicta alias, sit necessitatibus cumque consectetur esse voluptatum suscipit repellendus, in quaerat maxime. Consequatur deleniti quos commo
                                         </div>
-                                        <div className="col-md-4"></div>
                                         <div className="col-md-4"></div>
                                     </div>
                                 </div>
@@ -145,7 +144,7 @@ const Advertise = ({ match, getSingleAd, ad, loading, relatedAds }) => {
                                 <h3 className="mt-5">More Ads</h3>
                                 <div className="row">
                                     {relatedAds && relatedAds.map((relatedAd, index) => {
-                                        return <div className="col-md-3">
+                                        return <div key={index} className="col-md-3">
                                             <Link to={`/product-details/${relatedAd._id}`} className="product">
                                                 <div>
                                                     <img className="img-fluid" src={relatedAd.images[0].url} alt="product" />
@@ -170,9 +169,9 @@ const Advertise = ({ match, getSingleAd, ad, loading, relatedAds }) => {
 
 Advertise.propTypes = {
     getSingleAd: PropTypes.func.isRequired,
-    ad: PropTypes.object.isRequired,
+    ad: PropTypes.object,
     loading: PropTypes.bool.isRequired,
-    relatedAds: PropTypes.array.isRequired,
+    relatedAds: PropTypes.array,
 }
 
 const mapStateToProps = state => ({
