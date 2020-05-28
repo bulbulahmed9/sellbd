@@ -7,6 +7,7 @@ export const profileURL = "/api/user/profile"
 export const updatePhoneURL = "/api/user/profile/updatePhone"
 export const postAdURL = "/api/postad"
 export const adsURL = "/api/ads"
-// export const singleAdURL = "/api/ads/:id"
+// get single ad based on id
+export const singleAdURL = "/api/ads"
 export const userAdsURL = "/api/user/ads"
 export const relatedAdsURL = "/api/user/relatedads"

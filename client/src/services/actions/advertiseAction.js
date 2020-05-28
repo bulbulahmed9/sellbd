@@ -1,7 +1,7 @@
-import { postAd_success, postAd_failed, postAd_loading, getAd_success, getAd_failed, getAd_loading } from '../types'
+import { postAd_success, postAd_failed, postAd_loading, getAd_success, getAd_failed, getAd_loading, getRelatedAd_failed, getRelatedAd_success } from '../types'
 import { toast } from 'react-toastify'
 import Axios from 'axios'
-import { postAdURL, adsURL } from '../../API/api'
+import { postAdURL, adsURL, relatedAdsURL } from '../../API/api'
 import { setAuthToken } from '../../utils/setAuthToken'
 import FormData from 'form-data'
 
@@ -89,5 +89,33 @@ export const getAd = (obj, ads, isFilter = false, page) => async dispatch => {
             type: getAd_failed
         })
         console.log(err)
+    }
+}
+
+// get related ads 
+export const relatedAds = (title) => async dispatch => {
+    
+    let obj = {
+        title
+    }
+
+    let body = JSON.stringify(obj)
+    console.log(body)
+    let config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    try {
+        const res = await Axios.post(relatedAdsURL, body, config)
+        dispatch({
+            type: getRelatedAd_success,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: getRelatedAd_failed
+        })
     }
 }

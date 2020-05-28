@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 
 // components
 import Product from "./Product";
-import BigLoader from '../loading/BigLoader'
+import LoadMore from '../loading/LoadMore'
 
 const ProductList = ({ ads, getAdLoading, getAd, page }) => {
 
@@ -132,7 +132,12 @@ const ProductList = ({ ads, getAdLoading, getAd, page }) => {
                                     dataLength={ads.length}
                                     next={() => getAd(filterData, ads, false, page)}
                                     hasMore={true}
-                                    loader={getAdLoading && <BigLoader />}
+                                    loader={getAdLoading && <LoadMore />}
+                                    endMessage={
+                                        <p style={{ textAlign: 'center' }}>
+                                            <b>Yay! You have seen it all</b>
+                                        </p>
+                                    }
                                 >
                                     {/* {
                                     getAdLoading ? <BigLoader /> : */}

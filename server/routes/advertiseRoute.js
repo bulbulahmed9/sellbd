@@ -29,11 +29,11 @@ router.get('/api/ads/:id', getAdById)
 router.get('/api/user/ads',auth,  getAllAdsByUser)
 
 
-// @ route get: /api/user/relatedads
-// @ desc get user all ads
-// @ access private
+// @ route post: /api/user/relatedads
+// @ desc get user all ads based on title
+// @ access public
 
-router.get('/api/user/relatedads', relatedAds)
+router.post('/api/user/relatedads', relatedAds)
 
 
 module.exports = router

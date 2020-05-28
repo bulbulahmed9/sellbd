@@ -28,6 +28,7 @@
     "react-infinite-scroll-component": "^5.0.4",
     "react-moment": "^0.9.7",
     "react-redux": "^7.2.0",
+    "react-responsive-carousel": "^3.2.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-toastify": "^6.0.4",

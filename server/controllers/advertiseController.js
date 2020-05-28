@@ -87,7 +87,10 @@ const getAllAds = async (req, res) => {
 
         if (searchKeyword) filterData.title = new RegExp(searchKeyword, "i");
 
-        const ads = await Advertise.find(filterData).limit(limit * 1).skip((page - 1) * limit)
+        const ads = await Advertise.find(filterData).limit(limit * 1).skip((page - 1) * limit).populate({
+            path: 'user',
+            select: '-password -verificationCode'
+        })
         const count = await Advertise.countDocuments()
 
         res.status(200).json({
@@ -103,8 +106,10 @@ const getAllAds = async (req, res) => {
 // get single ad by id 
 const getAdById = async (req, res) => {
     try {
-        const result = await Advertise.findById(req.params.id)
-        console.log(req.param.id)
+        const result = await Advertise.findOne({ _id: req.params.id }).populate({
+            path: 'user',
+            select: '-password -verificationCode'
+        })
         if (!result) {
             return res.json({ msg: 'no data found' })
         }
@@ -133,13 +138,16 @@ const getAllAdsByUser = async (req, res) => {
 const relatedAds = async (req, res) => {
 
     try {
+        console.log(req.body.title)
         let result;
-        result = await Advertise.find({ title: new RegExp(req.body.title, "i") }).limit(10)
+        result = await Advertise.find({ title: new RegExp(req.body.title, "i") }).limit(10).populate({
+            path: 'user',
+            select: '-password -verificationCode'
+        })
         if (!result) {
             result = await Advertise.find().limit(10)
         }
         res.json(result)
-        console.log(result.length)
     } catch (err) {
         console.log(err.message);
     }

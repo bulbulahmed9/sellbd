@@ -7,15 +7,16 @@ import { MdLocationOn } from "react-icons/md";
 const Product = ({ ad }) => {
     return (
         <>
-        <div className="product">
-            <Link to="/product-details">
+        <Link to={`/product-details/${ad._id}`} className="product">
+            <div>
             <img className="img-fluid" src={ad.images[0].url} alt="product"/>
             <h6> {ad.title} </h6>
-            </Link>
+            <h6> Seller: {ad.user.name} </h6>
+            </div>
             <div className="mb-3">
             <span className="mr-3"> <MdLocationOn /> {`${ad.area},${ad.division}`} </span> <p> price: {ad.price} BDT </p>
             </div>
-        </div>
+        </Link>
         </>
     )
 }

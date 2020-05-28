@@ -1,10 +1,11 @@
-import { postAd_success, postAd_failed, postAd_loading, getAd_success, getAd_failed, getAd_loading } from '../types'
+import { postAd_success, postAd_failed, postAd_loading, getAd_success, getAd_failed, getAd_loading, getRelatedAd_success, getRelatedAd_failed } from '../types'
 
 const initialState = {
     loading: false,
     getAdLoading: false,
     ads: [],
-    page: 0
+    page: 0,
+    relatedAds: []
 }
 
 export default function (state = initialState, action) {
@@ -41,6 +42,16 @@ export default function (state = initialState, action) {
                 ...state,
                 getAdLoading: false,
                 ads: []
+            }
+        case getRelatedAd_success:
+            return {
+                ...state,
+                relatedAds: action.payload
+            }
+        case getRelatedAd_failed:
+            return {
+                ...state,
+                relatedAds: []
             }
         default:
             return state

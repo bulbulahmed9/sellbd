@@ -3,3 +3,10 @@
     margin-bottom: 0 !important;
     color: var(--black);
 }
+.product{
+    text-decoration: none;
+    color: #000000;
+}
+.product:hover{
+    color: #000000;
+}

@@ -29,3 +29,10 @@ export const postAd_loading = 'postAd_loading'
 export const getAd_success = 'getAd_success'
 export const getAd_failed = 'getAd_failed'
 export const getAd_loading = 'getAd_loading'
+
+export const getSingleAd_success = 'getSingleAd_success'
+export const getSingleAd_failed = 'getSingleAd_failed'
+export const getSingleAd_loader = 'getSingleAd_loader'
+
+export const getRelatedAd_success = 'getRelatedAd_success'
+export const getRelatedAd_failed = 'getRelatedAd_failed'
