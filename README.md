@@ -68,10 +68,12 @@ you can contact with seller via email and phone. as well as you can post your ow
   <h3>Screenshot</h3>
   <div>
   <img height="300px" src="client/public/img/ss1.png" alt="ss" /> 
-  <br>
+  
+  <div></div>
   
   <img height="300px" src="client/public/img/ss2.png" alt="ss" /> 
-  <br>
+  
+  <div></div>
   
   <img height="300px" src="client/public/img/ss3.png" alt="ss" />
 </div>
