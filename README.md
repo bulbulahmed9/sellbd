@@ -62,3 +62,6 @@ you can contact with seller via email and phone. as well as you can post your ow
   <li>cd client and run npm start</li>
   <li>cd server and run npm run dev</li>
   </ul>
+  
+  <h3>Screenshot</h3>
+  <img height="400px" src="client/public/img/ss1.png" alt="ss" />
