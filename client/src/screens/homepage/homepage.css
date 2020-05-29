@@ -1,0 +1,19 @@
+.home{
+    background: url(../../shared/img/bg.jpg);
+    height: 100vh;
+    position: relative;
+}
+.home .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.home h4, .home h3{
+    color: #ffffff;
+    text-align: center;
+}
+.home h3{
+    margin-top: 200px;
+}

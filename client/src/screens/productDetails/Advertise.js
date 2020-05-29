@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import {Link} from 'react-router-dom'
 import { MdLocationOn } from "react-icons/md";
 
-const Advertise = ({ match, getSingleAd, ad, loading, relatedAds }) => {
+const Advertise = ({ match, getSingleAd, ad, loading, relatedAds, history }) => {
 
     let email;
     if(ad){
@@ -28,7 +28,7 @@ const Advertise = ({ match, getSingleAd, ad, loading, relatedAds }) => {
 
 
     useEffect(() => {
-        getSingleAd(match.params.id)
+        getSingleAd(match.params.id, history)
     }, [])
 
     return (
@@ -144,7 +144,7 @@ const Advertise = ({ match, getSingleAd, ad, loading, relatedAds }) => {
                                 <h3 className="mt-5">More Ads</h3>
                                 <div className="row">
                                     {relatedAds && relatedAds.map((relatedAd, index) => {
-                                        return <div key={index} className="col-md-3">
+                                        return <div key={index} className="col-md-2">
                                             <Link to={`/product-details/${relatedAd._id}`} className="product">
                                                 <div>
                                                     <img className="img-fluid" src={relatedAd.images[0].url} alt="product" />

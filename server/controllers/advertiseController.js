@@ -1,6 +1,7 @@
 const fs = require('fs')
 const cloudinary = require('../utils/cloudinary')
 const Advertise = require('../model/advertiseModel')
+var mongoose = require('mongoose');
 
 // post an advertise
 const postAd = async (req, res) => {
@@ -26,7 +27,6 @@ const postAd = async (req, res) => {
                     msg: "Please provide images"
                 })
             }
-
             for (const file of files) {
                 const { path } = file;
                 const newPath = await uploader(path)
@@ -50,7 +50,7 @@ const postAd = async (req, res) => {
             await advertise.save();
             // }
 
-            res.status(201).json({
+            res.status(201).json({ 
                 msg: 'Posted advertise successfully',
             })
         } else {
@@ -105,15 +105,22 @@ const getAllAds = async (req, res) => {
 
 // get single ad by id 
 const getAdById = async (req, res) => {
+    let {id} = req.params
+    
+    let isValid  = mongoose.Types.ObjectId.isValid(id);
+    
     try {
-        const result = await Advertise.findOne({ _id: req.params.id }).populate({
+        if(!isValid){
+            return res.json({
+                success: false,
+                msg: "Invalid id"
+            })
+        }
+        const result = await Advertise.findById(id).populate({
             path: 'user',
             select: '-password -verificationCode'
         })
-        if (!result) {
-            return res.json({ msg: 'no data found' })
-        }
-        res.json(result)
+        res.status(200).json(result)
     } catch (err) {
         console.log(err.message);
     }

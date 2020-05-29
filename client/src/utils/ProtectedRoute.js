@@ -12,7 +12,6 @@ const ProtectedRoute = ({
 }) => {
     return (
         <Route {...rest} render={(props) => isAuth ? (<Component {...props} />) : (
-        toast("Please log in"),
         <Redirect to="/login" />)} />
     )
 }

@@ -6,13 +6,16 @@ import { relatedAds } from './advertiseAction'
 
 
 
-export const getSingleAd = (id) => async dispatch => {
+export const getSingleAd = (id, history) => async dispatch => {
     try {
         dispatch({
             type: getSingleAd_loader
         })
         const res = await axios.get(`${singleAdURL}/${id}`)
-        if (res) {
+        if (res.data.success === false) {
+            history.push('/allads')
+            toast(res.data.msg)
+        } else {
             dispatch(relatedAds(res.data.title))
             dispatch({
                 type: getSingleAd_success,
@@ -20,11 +23,11 @@ export const getSingleAd = (id) => async dispatch => {
             })
         }
 
+
     } catch (err) {
         dispatch({
             type: getSingleAd_failed
         })
-        console.log(`${singleAdURL}/${id}`)
         toast("Something went wrong")
     }
 }
