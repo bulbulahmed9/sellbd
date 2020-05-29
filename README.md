@@ -5,6 +5,8 @@ Buy what you want and Sell what you have
 <p>This is a buy sell website. You can see different types of advertisement and
 you can contact with seller via email and phone. as well as you can post your own advertisement.</p>
 
+<span>Project Overview video : https://youtu.be/1U6uuDdL49Q </span>
+
 <h3>Features</h3>
 <ul>
   <li>Local Sign Up</li>
@@ -66,6 +68,8 @@ you can contact with seller via email and phone. as well as you can post your ow
   <h3>Screenshot</h3>
   <div>
   <img height="300px" src="client/public/img/ss1.png" alt="ss" /> <br />
+  
   <img height="300px" src="client/public/img/ss2.png" alt="ss" /> <br />
+  
   <img height="300px" src="client/public/img/ss3.png" alt="ss" />
 </div>
