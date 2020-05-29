@@ -30,3 +30,35 @@ you can contact with seller via email and phone. as well as you can post your ow
   <li>Cloudinary</li>
   <li>Multer</li>
 </ul>
+
+<h3>How to run this projects</h3>
+  <ul>
+    <li>Clone this repsitory</li>
+    <li>cd client and run npm install</li>
+    <li>cd server and run npm install</li>
+    <li>make a .env file in server folder and add these env variable
+      
+      dbUsername = put your db username without string
+      dbPassword = 
+
+      googleClientId = 
+      googleClientSecret = 
+
+      cookieKey = 
+
+      fbAppId = 
+      fbAppSecret = 
+
+      jwtSecret = 
+      sendgridAPI = 
+      fromEmail = 
+
+      CLOUD_NAME = 
+      CLOUDINARY_API_KEY = 
+      CLOUDINARY_API_SECRET = 
+
+      clientURL = http://localhost:3000/profile 
+  </li>
+  <li>cd client and run npm start</li>
+  <li>cd server and run npm run dev</li>
+  </ul>
