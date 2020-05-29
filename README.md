@@ -64,6 +64,8 @@ you can contact with seller via email and phone. as well as you can post your ow
   </ul>
   
   <h3>Screenshot</h3>
-  <img height="200px" src="client/public/img/ss1.png" alt="ss" />
-  <img height="200px" src="client/public/img/ss1.png" alt="ss" />
-  <img height="200px" src="client/public/img/ss1.png" alt="ss" />
+  <div>
+  <img height="300px" src="client/public/img/ss1.png" alt="ss" /> <br />
+  <img height="300px" src="client/public/img/ss2.png" alt="ss" /> <br />
+  <img height="300px" src="client/public/img/ss3.png" alt="ss" />
+</div>
