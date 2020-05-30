@@ -31,6 +31,7 @@ you can contact with seller via email and phone. as well as you can post your ow
   <li>Mongoose, MongoDB Atlas</li>
   <li>Cloudinary</li>
   <li>Multer</li>
+  <li>Passport JS</li>
 </ul>
 
 <h3>How to run this projects</h3>
