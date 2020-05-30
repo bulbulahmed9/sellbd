@@ -44,4 +44,8 @@ const advertiseSchema = mongoose.Schema({
     }
 }, { timestamps: true })
 
+// Indexing
+
+advertiseSchema.index({ division: 1, area: 1, category: 1, title: 1, price: 1 });
+
 module.exports = mongoose.model('Advertise', advertiseSchema)

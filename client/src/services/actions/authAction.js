@@ -73,13 +73,11 @@ export const register = ({ name, email, password }, history) => async dispatch =
 
 
     } catch (err) {
-        if (err) {
-            dispatch({
-                type: register_failed,
-                payload: err
-            })
-            toast("Something went wrong")
-        }
+        dispatch({
+            type: register_failed,
+            payload: err
+        })
+        toast("Something went wrong")
     }
 }
 
@@ -114,13 +112,11 @@ export const verify = ({ email, code }, history) => async dispatch => {
 
 
     } catch (err) {
-        if (err) {
-            dispatch({
-                type: verify_failed,
-                payload: err
-            })
-            toast("Something went wrong")
-        }
+        dispatch({
+            type: verify_failed,
+            payload: err
+        })
+        toast("Something went wrong")
     }
 }
 
@@ -152,13 +148,11 @@ export const login = ({ email, password }, history) => async dispatch => {
             // dispatch(loadUser());
         }
     } catch (err) {
-        if (err) {
-            dispatch({
-                type: login_failed,
-                payload: err
-            })
-            toast("Something went wrong")
-        }
+        dispatch({
+            type: login_failed,
+            payload: err
+        })
+        toast("Something went wrong")
     }
 }
 
@@ -170,11 +164,9 @@ export const loginOAuth = (token) => async dispatch => {
         })
         // dispatch(loadUser())
     } catch (err) {
-        if (err) {
-            dispatch({
-                type: loginOAuth_failed,
-            })
-        }
+        dispatch({
+            type: loginOAuth_failed,
+        })
     }
 }
 

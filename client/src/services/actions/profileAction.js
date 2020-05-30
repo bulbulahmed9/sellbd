@@ -12,7 +12,7 @@ export const updatePhone = (phone) => async dispatch => {
             "Content-Type": "application/json"
         }
     }
-    const body = JSON.stringify({phone})
+    const body = JSON.stringify({ phone })
 
     try {
         dispatch({
@@ -24,11 +24,9 @@ export const updatePhone = (phone) => async dispatch => {
         })
         toast(res.data.msg)
     } catch (err) {
-        if(err){
-            dispatch({
-                type: phone_update_failed
-            })
-            toast("Phone Update Failed")
-        }
+        dispatch({
+            type: phone_update_failed
+        })
+        toast("Phone Update Failed")
     }
 }

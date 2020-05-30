@@ -23,7 +23,7 @@ router.post('/api/user/register', [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(200).json({ errors: errors.array() });
+      return res.json({ errors: errors.array() });
     }
     const { name, email, password } = req.body;
     try {
@@ -77,7 +77,9 @@ router.post('/api/user/register', [
         msg: 'Please check your email and verify your account'
       })
     } catch (err) {
-      console.log(err.message)
+      res.json({
+        msg: "Something went wrong"
+      })
     }
   })
 
@@ -90,14 +92,12 @@ router.put('/api/user/verify', async (req, res) => {
   try {
     const { email, code } = req.body;
     if (!email) {
-      return res.status(200).json({
-        success: false,
+      return res.json({
         msg: "Please provide your email"
       })
     }
     if (!code) {
-      return res.status(200).json({
-        success: false,
+      return res.json({
         msg: "Please provide a code"
       })
     }
@@ -105,7 +105,6 @@ router.put('/api/user/verify', async (req, res) => {
 
     if (!user) {
       return res.json({
-        success: false,
         msg: 'User not found'
       })
     }
@@ -117,7 +116,6 @@ router.put('/api/user/verify', async (req, res) => {
 
     if (!isMatch) {
       return res.json({
-        success: false,
         msg: 'Invalid Code'
       });
     }
@@ -134,11 +132,12 @@ router.put('/api/user/verify', async (req, res) => {
     }, process.env.jwtSecret, { expiresIn: '7d' });
     res.status(201).json({
       token,
-      success: true,
       msg: "Verification Successful"
     })
   } catch (err) {
-    console.log(err.message)
+    res.json({
+      msg: "Something went wrong"
+    })
   }
 })
 
@@ -170,14 +169,12 @@ router.post('/api/user/login',
       }
       if (!user.isVerified) {
         return res.json({
-          success: false,
           msg: 'You are not verified user'
         })
       }
       const isMatchPasswod = await bcrypt.compare(password, user.password)
       if (!isMatchPasswod) {
         return res.json({
-          success: false,
           msg: "Invalid Credentials"
         })
       }
@@ -194,22 +191,11 @@ router.post('/api/user/login',
         msg: 'You are logged in'
       });
     } catch (err) {
-      console.log(err.message);
+      res.json({
+        msg: "Something went wrong"
+      })
     }
 
   })
-
-// @route    get /api/user/logout
-// @desc     log in user
-// @access   public
-
-// router.get('/api/user/logout', (req, res) => {
-//   res.clearCookie('mycookie')
-//   res.json({
-//     success: true,
-//     msg: 'Successfully logged out'
-//   })
-// })
-
 
 module.exports = router;

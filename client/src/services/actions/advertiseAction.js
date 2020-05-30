@@ -46,12 +46,10 @@ export const postAd = (data, history) => async dispatch => {
             history.push("/profile")
         }
     } catch (err) {
-        if (err) {
-            dispatch({
-                type: postAd_failed,
-            })
-            toast("Something went wrong")
-        }
+        dispatch({
+            type: postAd_failed,
+        })
+        toast("Something went wrong")
     }
 }
 
@@ -88,13 +86,12 @@ export const getAd = (obj, ads, isFilter = false, page) => async dispatch => {
         dispatch({
             type: getAd_failed
         })
-        console.log(err)
     }
 }
 
 // get related ads 
 export const relatedAds = (title) => async dispatch => {
-    
+
     let obj = {
         title
     }

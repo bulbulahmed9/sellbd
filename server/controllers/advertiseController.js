@@ -33,8 +33,7 @@ const postAd = async (req, res) => {
                 urls.push(newPath)
                 fs.unlinkSync(path)
             }
-            // for(let i=0; i <= 50; i++){
-            console.log(req.user.id)
+            // for(let i=1; i <= 1000; i++){
             const advertise = new Advertise({
                 user: req.user.id,
                 division: division,
@@ -50,7 +49,7 @@ const postAd = async (req, res) => {
             await advertise.save();
             // }
 
-            res.status(201).json({ 
+            res.status(201).json({
                 msg: 'Posted advertise successfully',
             })
         } else {
@@ -59,9 +58,9 @@ const postAd = async (req, res) => {
             })
         }
     } catch (err) {
-        if (err) {
-            console.log(err)
-        }
+        res.json({
+            msg: "Something went wrong"
+        })
     }
 }
 
@@ -90,8 +89,8 @@ const getAllAds = async (req, res) => {
         const ads = await Advertise.find(filterData).limit(limit * 1).skip((page - 1) * limit).populate({
             path: 'user',
             select: '-password -verificationCode'
-        })
-        const count = await Advertise.countDocuments()
+        }).sort({ createdAt: -1 })
+        const count = await Advertise.estimatedDocumentCount()
 
         res.status(200).json({
             ads,
@@ -99,18 +98,20 @@ const getAllAds = async (req, res) => {
             currentPage: page
         });
     } catch (err) {
-        console.log(err.message);
+        res.json({
+            msg: "Something went wrong"
+        })
     }
 }
 
 // get single ad by id 
 const getAdById = async (req, res) => {
-    let {id} = req.params
-    
-    let isValid  = mongoose.Types.ObjectId.isValid(id);
-    
+    let { id } = req.params
+
+    let isValid = mongoose.Types.ObjectId.isValid(id);
+
     try {
-        if(!isValid){
+        if (!isValid) {
             return res.json({
                 success: false,
                 msg: "Invalid id"
@@ -122,7 +123,9 @@ const getAdById = async (req, res) => {
         })
         res.status(200).json(result)
     } catch (err) {
-        console.log(err.message);
+        res.json({
+            msg: "Something went wrong"
+        })
     }
 }
 
@@ -135,9 +138,10 @@ const getAllAdsByUser = async (req, res) => {
             return res.json({ msg: 'Currently you have no ads' })
         }
         res.json(result)
-        console.log(result.length)
     } catch (err) {
-        console.log(err.message);
+        res.json({
+            msg: "Something went wrong"
+        })
     }
 }
 
@@ -145,7 +149,6 @@ const getAllAdsByUser = async (req, res) => {
 const relatedAds = async (req, res) => {
 
     try {
-        console.log(req.body.title)
         let result;
         result = await Advertise.find({ title: new RegExp(req.body.title, "i") }).limit(10).populate({
             path: 'user',
@@ -156,7 +159,9 @@ const relatedAds = async (req, res) => {
         }
         res.json(result)
     } catch (err) {
-        console.log(err.message);
+        res.json({
+            msg: "Something went wrong"
+        })
     }
 }
 

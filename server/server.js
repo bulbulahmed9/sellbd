@@ -40,6 +40,19 @@ app.use('/', require('./routes/profileRoute'))
 // Home
 app.get('/', (req, res) => res.send('App is running'))
 
+// Error Handling Middleware
+app.use((req, res, next) => {
+    const error = new Error('Not Found')
+    error.status = 404
+    next(error)
+})
+app.use((error, req, res, next) => {
+    res.status(error.status || 500)
+    res.json({
+        msg: error.message
+    })
+})
+
 // Start the Server
 const PORT = process.env.PORT || 5000
 
