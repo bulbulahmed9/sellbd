@@ -1,8 +1,6 @@
 const router = require('express').Router()
 const bcrypt = require('bcrypt')
-const auth = require('../../middleware/auth')
 const jwt = require('jsonwebtoken')
-require('dotenv').config()
 const { check, validationResult } = require('express-validator')
 const sendEmail = require('../../utils/index')
 

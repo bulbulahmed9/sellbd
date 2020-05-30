@@ -42,6 +42,6 @@ const advertiseSchema = mongoose.Schema({
         type: Boolean,
         default: false
     }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Advertise', advertiseSchema)
