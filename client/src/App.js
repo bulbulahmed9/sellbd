@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {
   Switch,
   Route,
+  withRouter
 } from "react-router-dom";
 import { connect } from 'react-redux'
 import { loginOAuth } from './services/actions/authAction'
@@ -33,7 +34,7 @@ import Footer from './components/footer/Footer';
 import NotFound from './components/notFound/NotFound';
 import Policy from './components/policy/Policy';
 
-const App = ({ loginOAuth }) => {
+const App = ({ loginOAuth, history }) => {
 
   // check cookies and extract token from cookies and set it to local storage
   // this is for only fb and google Oauth
@@ -72,4 +73,4 @@ const App = ({ loginOAuth }) => {
   )
 }
 
-export default connect(null, { loginOAuth })(App)
+export default connect(null, { loginOAuth })(withRouter(App))
