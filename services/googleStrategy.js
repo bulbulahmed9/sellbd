@@ -31,9 +31,7 @@ passport.use(new GoogleStrategy({
                 return done(null, user);
             }
         } catch (err) {
-            res.json({
-                msg: "Something went wrong"
-            })
+            console.log(err.message)
         }
 
         try {
@@ -46,9 +44,7 @@ passport.use(new GoogleStrategy({
             }).save();
             done(null, newUser);
         } catch (err) {
-            res.json({
-                msg: "Something went wrong"
-            })
+            console.log(err.message)
         }
     }
 ));  

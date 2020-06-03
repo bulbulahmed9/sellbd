@@ -23,7 +23,6 @@ passport.use(new FacebookStrategy({
     proxy: true
 },
     async (accessToken, refreshToken, profile, done) => {
-        console.log("profile", profile)
         try {
             const user = await User.findOne({ facebookId: profile.id });
 
@@ -31,9 +30,7 @@ passport.use(new FacebookStrategy({
                 return done(null, user);
             }
         } catch (err) {
-            res.json({
-                msg: "Something went wrong"
-            })
+            console.log(err.message)
         }
 
         try {
@@ -46,9 +43,7 @@ passport.use(new FacebookStrategy({
             }).save();
             done(null, newUser);
         } catch (err) {
-            res.json({
-                msg: "Something went wrong"
-            })
+            console.log(err.message)
         }
     }
 ));

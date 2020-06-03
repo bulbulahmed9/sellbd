@@ -32,7 +32,7 @@ const postAd = async (req, res) => {
                 urls.push(newPath)
                 fs.unlinkSync(path)
             }
-            // for(let i=1; i <= 100; i++){
+            // for(let i=1; i <= 50; i++){
             const advertise = new Advertise({
                 user: req.user.id,
                 division: division,
