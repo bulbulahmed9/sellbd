@@ -37,7 +37,7 @@ passport.use(new FacebookStrategy({
             const newUser = await new User({
                 provider: profile.provider,
                 facebookId: profile.id,
-                facebookEmail: profile.emails[0].value !== undefined && profile.emails[0].value !== null ? profile.emails[0].value : null,
+                facebookEmail: profile.email ? profile.emails[0].value : null,
                 name: profile.displayName,
                 isVerified: true
             }).save();
