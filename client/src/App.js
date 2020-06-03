@@ -31,6 +31,7 @@ import Verify from './screens/verify user/Verify';
 import ProtectedRoute from './utils/ProtectedRoute';
 import Footer from './components/footer/Footer';
 import NotFound from './components/notFound/NotFound';
+import Policy from './components/policy/Policy';
 
 const App = ({ loginOAuth }) => {
 
@@ -61,6 +62,7 @@ const App = ({ loginOAuth }) => {
         <Route exact path="/product-details/:id" component={Advertise} />
         <ProtectedRoute exact path="/sell" component={SellForm} />
         <Route exact path="/verify" component={Verify} />
+        <Route exact path="/policy" component={Policy} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

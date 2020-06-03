@@ -15,6 +15,7 @@ const Footer = () => {
                   3481 Melrose Place <br />
                   Beverly Hills, CA 90210
                 </p>
+                <a style={{ color: "#ffffff", textDecoration: "none" }} href="/policy">Privacy & Policy</a>
               </div>
               <div className="col-md-4 text-center">
                 <h3>Share with love</h3>
@@ -26,7 +27,7 @@ const Footer = () => {
                     <i className="fab fa-linkedin-in"></i>
                   </a>
                   <a href="https://github.com/bulbulahmed9" target="_blank">
-                  <i className="fab fa-github"></i>
+                    <i className="fab fa-github"></i>
                   </a>
                 </div>
               </div>
