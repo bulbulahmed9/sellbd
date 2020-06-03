@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import {Link} from 'react-router-dom'
 
 import './footer.css'
 
@@ -15,7 +16,7 @@ const Footer = () => {
                   3481 Melrose Place <br />
                   Beverly Hills, CA 90210
                 </p>
-                <a style={{ color: "#ffffff", textDecoration: "none" }} href="/policy">Privacy & Policy</a>
+                <Link className="link" style={{ color: "#ffffff", textDecoration: "none" }} to="/policy">Privacy & Policy</Link>
               </div>
               <div className="col-md-4 text-center">
                 <h3>Share with love</h3>
