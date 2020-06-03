@@ -5,7 +5,8 @@ Buy what you want and Sell what you have
 <p>This is a buy sell website. You can see different types of advertisement and
 you can contact with seller via email and phone. as well as you can post your own advertisement.</p>
 
-<span>Project Overview video : https://youtu.be/1U6uuDdL49Q </span>
+<span>Project Overview video : https://youtu.be/1U6uuDdL49Q </span> 
+<span>See live demo : https://sellbd.herokuapp.com </span>
 
 <h3>Features</h3>
 <ul>
