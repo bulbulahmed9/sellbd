@@ -2,9 +2,8 @@ import React from 'react'
 
 const Policy = () => {
     return (
-        <div>
-
-            <h2 style="text-align: center;"><b>PRIVACY POLICY</b></h2>
+        <div className="container">
+            <h2 style={{ textAlign: 'center' }}><b>PRIVACY POLICY</b></h2>
             <p>Effective date: 2020-06-03</p>
             <p>1. <b>Introduction</b></p>
             <p>Welcome to <b> Sell BD</b>.</p>
@@ -76,7 +75,7 @@ const Policy = () => {
             <p>9. <b>Security of Data</b></p>
             <p>The security of your data is important to us but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p>
             <p>10. <b>Your Data Protection Rights Under General Data Protection Regulation (GDPR)
-</b></p>
+    </b></p>
             <p>If you are a resident of the European Union (EU) and European Economic Area (EEA), you have certain data protection rights, covered by GDPR.</p>
             <p>We aim to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.</p>
             <p> If you wish to be informed what Personal Data we hold about you and if you want it to be removed from our systems, please email us at <b>bulbulahmed.tk@gmail.com</b>.</p>
@@ -123,10 +122,8 @@ const Policy = () => {
             <p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>
             <p>15. <b>CI/CD tools</b></p>
             <p>We may use third-party Service Providers to automate the development process of our Service.</p>
-
             <p>16. <b>Behavioral Remarketing</b></p>
             <p>We may use remarketing services to advertise on third party websites to you after you visited our Service. We and our third-party vendors use cookies to inform, optimise and serve ads based on your past visits to our Service.</p>
-
             <p>17. <b>Links to Other Sites</b></p>
             <p>Our Service may contain links to other sites that are not operated by us. If you click a third party link, you will be directed to that third party’s site. We strongly advise you to review the Privacy Policy of every site you visit.</p>
             <p>We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.</p>
@@ -140,9 +137,9 @@ const Policy = () => {
             <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
             <p>20. <b>Contact Us</b></p>
             <p>If you have any questions about this Privacy Policy, please contact us by email: <b>bulbulahmed.tk@gmail.com</b>.</p>
-            <p style="margin-top: 5em; font-size: 0.7em;">This <a href="https://policymaker.io/privacy-policy/">Privacy Policy</a> was created for <b>https://sellbd.herokuapp.com</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2020-06-03.</p>
-
+            <p style={{ marginTop: '5em', fontSize: '0.7em' }}>This <a href="https://policymaker.io/privacy-policy/">Privacy Policy</a> was created for <b>https://sellbd.herokuapp.com</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2020-06-03.</p>
         </div>
+
     )
 }
 
