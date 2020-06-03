@@ -37,11 +37,6 @@ app.use('/', require('./routes/Auth/localAuth'))
 app.use('/', require('./routes/advertiseRoute'))
 app.use('/', require('./routes/profileRoute'))
 
-// // Home
-// app.get('/', (req, res) => {
-//     res.send('App is running')
-// })
-
 // Error Handling Middleware
 app.use((req, res, next) => {
     const error = new Error('Not Found')
@@ -58,10 +53,10 @@ app.use((error, req, res, next) => {
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
     // Set static folder
-    app.use(express.static('client/public'));
+    app.use(express.static('client/build'));
 
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '../client', 'public', 'index.html'));
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }
 
