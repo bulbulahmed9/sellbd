@@ -37,6 +37,16 @@ app.use('/', require('./routes/Auth/localAuth'))
 app.use('/', require('./routes/advertiseRoute'))
 app.use('/', require('./routes/profileRoute'))
 
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
 // Error Handling Middleware
 app.use((req, res, next) => {
     const error = new Error('Not Found')
@@ -49,16 +59,6 @@ app.use((error, req, res, next) => {
         msg: error.message
     })
 })
-
-// Serve static assets in production
-if (process.env.NODE_ENV === 'production') {
-    // Set static folder
-    app.use(express.static('client/build'));
-
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-}
 
 // Start the Server
 const PORT = process.env.PORT || 5000

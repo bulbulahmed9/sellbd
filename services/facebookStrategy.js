@@ -31,7 +31,9 @@ passport.use(new FacebookStrategy({
                 return done(null, user);
             }
         } catch (err) {
-            console.log(err);
+            res.json({
+                msg: "Something went wrong"
+            })
         }
 
         try {
@@ -44,7 +46,9 @@ passport.use(new FacebookStrategy({
             }).save();
             done(null, newUser);
         } catch (err) {
-            console.log(err);
+            res.json({
+                msg: "Something went wrong"
+            })
         }
     }
 ));
