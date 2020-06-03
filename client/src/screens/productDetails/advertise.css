@@ -88,11 +88,9 @@
   }
   .carousel .thumb{
       width: 80px;
-      height: 80px;
   }
   .carousel .thumb img{
       width: 70px;
-      height: 70px;
   }
   .carousel .thumb.selected,
   .carousel .thumb:hover {

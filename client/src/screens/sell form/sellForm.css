@@ -53,6 +53,10 @@
   width: calc(33.33% - .5em);
 }
 
+.not-allowed{
+  cursor: not-allowed;
+}
+
 @media(max-width: 576px){
   .post-ad-form textarea {
     width: 350px;

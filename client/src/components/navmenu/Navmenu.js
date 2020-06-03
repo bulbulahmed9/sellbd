@@ -4,6 +4,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {logoutUser} from '../../services/actions/authAction'
 import './navmenu.css'
+import { toast } from 'react-toastify'
 
 const Navmenu = ({ isAuth, logoutUser }) => {
 
@@ -11,7 +12,7 @@ const Navmenu = ({ isAuth, logoutUser }) => {
         <NavLink className="nav-link mx-2" to="/allads">All Ads</NavLink>
         <NavLink className="nav-link mx-2" to="/login">Login</NavLink>
         <NavLink className="nav-link mx-2" to="/register">Register</NavLink>
-        <NavLink className="btn btn-info mx-2" to="/sell">Sell Products</NavLink>
+        <NavLink onClick={() => !isAuth && toast("Please log in")} className="btn btn-info mx-2" to="/sell">Sell Products</NavLink>
     </Nav>
 
     const navbarWithLogin = <Nav className="ml-auto">

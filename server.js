@@ -37,8 +37,10 @@ app.use('/', require('./routes/Auth/localAuth'))
 app.use('/', require('./routes/advertiseRoute'))
 app.use('/', require('./routes/profileRoute'))
 
-// Home
-app.get('/', (req, res) => res.send('App is running'))
+// // Home
+// app.get('/', (req, res) => {
+//     res.send('App is running')
+// })
 
 // Error Handling Middleware
 app.use((req, res, next) => {
@@ -52,6 +54,16 @@ app.use((error, req, res, next) => {
         msg: error.message
     })
 })
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('client/public'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../client', 'public', 'index.html'));
+    });
+}
 
 // Start the Server
 const PORT = process.env.PORT || 5000

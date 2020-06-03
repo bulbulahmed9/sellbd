@@ -21,7 +21,6 @@ const postAd = async (req, res) => {
         if (req.method === 'POST') {
             const urls = []
             const files = req.files;
-            console.log(`file is ${files}`)
             if (!files) {
                 return res.json({
                     msg: "Please provide images"
@@ -33,7 +32,7 @@ const postAd = async (req, res) => {
                 urls.push(newPath)
                 fs.unlinkSync(path)
             }
-            // for(let i=1; i <= 1000; i++){
+            // for(let i=1; i <= 100; i++){
             const advertise = new Advertise({
                 user: req.user.id,
                 division: division,
@@ -58,6 +57,7 @@ const postAd = async (req, res) => {
             })
         }
     } catch (err) {
+        console.log(err.message)
         res.json({
             msg: "Something went wrong"
         })

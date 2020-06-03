@@ -6,10 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import MiniLoader from '../../components/loading/MiniLoader'
 import "./sellForm.css";
 import { withRouter } from "react-router-dom";
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import {postAd} from '../../services/actions/advertiseAction'
+import { postAd } from '../../services/actions/advertiseAction'
 
 // static data for input field suggestion
 import { cityList, areas, categoryData } from "../../shared/staticData/data";
@@ -66,17 +66,17 @@ const SellForm = ({ history, postAd, loading }) => {
       position: toast.POSITION.TOP_RIGHT
     });
 
-    // show alert , if imgage is less than two 
+  // show alert , if imgage is less than two 
   const addTwoImgNotify = () =>
     toast.error("Please Add Atleast Two Pictures !", {
       position: toast.POSITION.TOP_RIGHT
     });
 
   // success message for form submission
-//   const successNotify = () =>
-//     toast.success("Form Submitted Successfully !", {
-//       position: toast.POSITION.TOP_LEFT
-//     });
+  //   const successNotify = () =>
+  //     toast.success("Form Submitted Successfully !", {
+  //       position: toast.POSITION.TOP_LEFT
+  //     });
 
   // react hook form
   const { register, handleSubmit, errors } = useForm();
@@ -89,7 +89,7 @@ const SellForm = ({ history, postAd, loading }) => {
       addTwoImgNotify();
     } else {
       data.files = files;
-    postAd(data, history)
+      postAd(data, history)
     }
   };
 
@@ -159,10 +159,10 @@ const SellForm = ({ history, postAd, loading }) => {
               <div className="category mb-3">
                 <h6>Category</h6>
                 {errors.category && <p className="error">Select Category</p>}
-                <select name="category" ref={register({required: true})}>
-                    { categoryData.map((item, index) => {
-                        return <option key={index} value={item}> {item} </option>
-                    }) }
+                <select name="category" ref={register({ required: true })}>
+                  {categoryData.map((item, index) => {
+                    return <option key={index} value={item}> {item} </option>
+                  })}
                 </select>
               </div>
 
@@ -219,12 +219,12 @@ const SellForm = ({ history, postAd, loading }) => {
               <div className="isNegotiable mb-3">
                 <h6>Negotiable</h6>
                 {errors.isNegotiable && <p className="error">Negotiable field is required</p>}
-                    <select name="isNegotiable" ref={register({ required: true })}>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
+                <select name="isNegotiable" ref={register({ required: true })}>
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
               </div>
-              <button type="submit"> {  loading ? <span> Submitting... <MiniLoader /> </span> : "Submit" }  </button>
+              <button disabled={loading && true} className={loading && 'not-allowed'} type="submit"> {loading ? <span> Submitting... <MiniLoader /> </span> : "Submit"}  </button>
             </form>
           </Col>
         </Row>
@@ -242,5 +242,5 @@ const mapStateToProps = state => ({
   loading: state.ad.loading
 })
 
-export default connect(mapStateToProps, {postAd})(withRouter(SellForm));
+export default connect(mapStateToProps, { postAd })(withRouter(SellForm));
 

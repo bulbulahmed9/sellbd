@@ -30,8 +30,12 @@ import ScrollTop from './utils/ScrollTop';
 import Verify from './screens/verify user/Verify';
 import ProtectedRoute from './utils/ProtectedRoute';
 import Footer from './components/footer/Footer';
+import NotFound from './components/notFound/NotFound';
 
 const App = ({ loginOAuth }) => {
+
+  // check cookies and extract token from cookies and set it to local storage
+  // this is for only fb and google Oauth
 
   useEffect(() => {
     const token = Cookies.get('mycookie');
@@ -57,6 +61,7 @@ const App = ({ loginOAuth }) => {
         <Route exact path="/product-details/:id" component={Advertise} />
         <ProtectedRoute exact path="/sell" component={SellForm} />
         <Route exact path="/verify" component={Verify} />
+        <Route component={NotFound} />
       </Switch>
       <Footer />
     </div>
