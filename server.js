@@ -47,17 +47,6 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-// Error Handling Middleware
-app.use((req, res, next) => {
-    const error = new Error('Not Found')
-    error.status = 404
-    next(error)
-})
-app.use((error, req, res, next) => {
-    res.status(error.status || 500)
-    res.send(`<h3> ${error.message} </h3> <br/> <a href="https://sellbd.herokuapp.com">Back to Home</a> `)
-})
-
 // Start the Server
 const PORT = process.env.PORT || 5000
 
