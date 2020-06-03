@@ -44,6 +44,7 @@ const App = ({ loginOAuth }) => {
       localStorage.setItem('token', token)
       Cookies.remove('mycookie');
       loginOAuth(token)
+      //  push to profile
       history.push('/profile')
     }
 
