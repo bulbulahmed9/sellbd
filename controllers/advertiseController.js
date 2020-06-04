@@ -18,44 +18,37 @@ const postAd = async (req, res) => {
     const uploader = async (path) => await cloudinary.uploads(path, 'images');
 
     try {
-        if (req.method === 'POST') {
-            const urls = []
-            const files = req.files;
-            if (!files) {
-                return res.json({
-                    msg: "Please provide images"
-                })
-            }
-            for (const file of files) {
-                const { path } = file;
-                const newPath = await uploader(path)
-                urls.push(newPath)
-                fs.unlinkSync(path)
-            }
-            // for(let i=1; i <= 50; i++){
-            const advertise = new Advertise({
-                user: req.user.id,
-                division: division,
-                area: area,
-                category: category,
-                images: urls,
-                condition: condition,
-                title: title,
-                description: description,
-                price: price,
-                isNegotiable: isNegotiable
-            })
-            await advertise.save();
-            // }
-
-            res.status(201).json({
-                msg: 'Posted advertise successfully',
-            })
-        } else {
-            res.json({
-                msg: `${req.method} method not allowed`
+        const urls = []
+        const files = req.files;
+        if (!files) {
+            return res.json({
+                msg: "Please provide images"
             })
         }
+        for (const file of files) {
+            const { path } = file;
+            const newPath = await uploader(path)
+            urls.push(newPath)
+            fs.unlinkSync(path)
+        }
+
+        const advertise = new Advertise({
+            user: req.user.id,
+            division: division,
+            area: area,
+            category: category,
+            images: urls,
+            condition: condition,
+            title: title,
+            description: description,
+            price: price,
+            isNegotiable: isNegotiable
+        })
+        await advertise.save();
+
+        res.status(201).json({
+            msg: 'Posted advertise successfully',
+        })
     } catch (err) {
         console.log(err.message)
         res.json({
