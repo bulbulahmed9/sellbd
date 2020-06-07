@@ -70,7 +70,7 @@ export const getAd = (obj, ads, isFilter = false, page) => async dispatch => {
         dispatch({
             type: getAd_loading
         })
-        let limit = 30;
+        let limit = 20;
         let newPage = page + 1;
         const res = await Axios.post(`${adsURL}?page=${newPage}&limit=${limit}`, body, config)
         if (res) {
