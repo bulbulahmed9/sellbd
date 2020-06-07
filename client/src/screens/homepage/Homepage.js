@@ -27,6 +27,7 @@ const Homepage = ({ getAd, ads, getAdLoading }) => {
 
     return (
         <div>
+            <div className="home"></div>
             <div className="container">
                 <div className="home-content my-5">
                     {

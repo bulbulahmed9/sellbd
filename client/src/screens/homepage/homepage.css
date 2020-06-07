@@ -1,3 +1,9 @@
+.home{
+    background: url(../../shared/img/bg.png);
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+}
 .home-content .see-more{
     text-decoration: none;
     background: #17a2b8;

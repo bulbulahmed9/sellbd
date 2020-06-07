@@ -16,6 +16,7 @@ import { MdLocationOn } from "react-icons/md";
 const Advertise = ({ match, getSingleAd, ad, loading, relatedAds, history }) => {
 
     let email;
+    let phone;
     if(ad){
         if(ad.user.email){
             email = ad.user.email
@@ -23,6 +24,15 @@ const Advertise = ({ match, getSingleAd, ad, loading, relatedAds, history }) => 
             email = ad.user.faacebookEmail
         } else if(ad.user.googleEmail){
             email = ad.user.googleEmail
+        }
+    }
+
+    if(ad){
+        if(ad.user.phone){
+            phone = `0${ad.user.phone}`
+        }
+        else{
+            phone = "No contact found"
         }
     }
 
@@ -59,7 +69,7 @@ const Advertise = ({ match, getSingleAd, ad, loading, relatedAds, history }) => 
                                 <span>or</span>
                                 <strong>
                                     {""}
-                                    Call<i className="las la-phone-volume"></i> {ad && `0${ad.user.phone}`}
+                                    Call: <i className="las la-phone-volume"></i> {ad && phone}
                                 </strong>
                             </div>
                             <div className="location">
@@ -131,7 +141,7 @@ const Advertise = ({ match, getSingleAd, ad, loading, relatedAds, history }) => 
                                     <div className="col-md-6">
                                         <h5> Name: {ad && ad.user.name} </h5>
                                         <h5> Email: {email} </h5>
-                                        <h5> Phone: {ad && `0${ad.user.phone}`} </h5>
+                                        <h5> Phone: {ad && phone} </h5>
                                         <h5> Location: {ad && ad.area},{ad && ad.division} </h5>
                                     </div>
                                     <div className="col-md-6">
