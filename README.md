@@ -39,8 +39,8 @@ you can contact with seller via email and phone. as well as you can post your ow
 <h3>How to run this projects</h3>
   <ul>
     <li>Clone this repsitory</li>
-    <li>cd client and run npm install</li>
-    <li>cd server and run npm install</li>
+    <li>cd project/client and run npm install</li>
+    <li>cd project and run npm install</li>
     <li>make a .env file in server folder and add these env variable
       
       dbUsername = put your db username without string
@@ -64,8 +64,8 @@ you can contact with seller via email and phone. as well as you can post your ow
 
       clientURL = http://localhost:3000/profile 
   </li>
-  <li>cd client and run npm start</li>
-  <li>cd server and run npm run dev</li>
+  <li>cd project/client and run npm start</li>
+  <li>cd project and run npm run dev</li>
   </ul>
   
   <h3>Screenshot</h3>
