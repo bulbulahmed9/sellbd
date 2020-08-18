@@ -7,6 +7,9 @@
     text-decoration: none;
     color: #000000;
 }
+.product img{
+    height: 200px;
+}
 .product:hover{
     color: #000000;
 }
