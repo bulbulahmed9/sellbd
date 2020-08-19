@@ -158,4 +158,29 @@ const relatedAds = async (req, res) => {
     }
 }
 
-module.exports = { postAd, getAllAds, getAdById, getAllAdsByUser, relatedAds }
+// delete ad by id
+const deleteAdById = async (req, res) => {
+    let { id } = req.params
+
+    let isValid = mongoose.Types.ObjectId.isValid(id);
+
+    try {
+        if (!isValid) {
+            return res.json({
+                success: false,
+                msg: "Invalid id"
+            })
+        }
+        await Advertise.findByIdAndDelete(id)
+        res.status(200).json({
+            msg: "success"
+        })
+    } catch (err) {
+        res.json({
+            msg: "Something went wrong"
+        })
+    }
+}
+
+
+module.exports = { postAd, getAllAds, getAdById, getAllAdsByUser, relatedAds, deleteAdById }
