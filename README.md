@@ -7,7 +7,6 @@ you can contact with seller via email and phone. as well as you can post your ow
 
 <span>Project Overview video : https://youtu.be/1U6uuDdL49Q </span> 
 <div></div> <br>
-<span>See live demo : https://sellbd.herokuapp.com </span>
 
 <h3>Features</h3>
 <ul>
