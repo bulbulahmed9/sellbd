@@ -5,8 +5,6 @@ Buy what you want and Sell what you have
 <p>This is a buy sell website. You can see different types of advertisement and
 you can contact with seller via email and phone. as well as you can post your own advertisement.</p>
 
-<div></div> <br>
-
 <h3>Features</h3>
 <ul>
   <li>Local Sign Up</li>
